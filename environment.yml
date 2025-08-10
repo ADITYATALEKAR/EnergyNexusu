@@ -1,0 +1,311 @@
+# EnergyNexus: Energy System Forecasting and Optimization
+# Conda Environment Configuration File
+# 
+# Project: EnergyNexus - Energy System Forecasting and Optimization
+# Author: Aditya Talekar (ec24018@qmul.ac.uk)
+# Institution: Queen Mary University of London
+# Program: MSc Data Science and AI - 2024/25
+# Supervisor: Saqib Iqbal
+# 
+# This environment configuration file defines all dependencies required for
+# the EnergyNexus energy forecasting and optimization system, including:
+# - Advanced LSTM neural networks for electricity demand forecasting
+# - Multi-variate time series analysis for renewable energy integration
+# - Comprehensive data quality assessment and preprocessing pipelines
+# - Energy system optimization algorithms
+# - Real-time monitoring and evaluation frameworks
+#
+# Usage:
+#   conda env create -f environment.yml
+#   conda activate energynexus
+#
+# Update existing environment:
+#   conda env update -f environment.yml --prune
+
+name: energynexus
+
+channels:
+  - conda-forge    # Primary channel for scientific computing packages
+  - defaults       # Anaconda default channel
+  - pytorch        # For advanced deep learning (if needed in future)
+
+dependencies:
+  # Python interpreter (latest stable for compatibility)
+  - python=3.11
+
+  # ============================================================================
+  # CORE SCIENTIFIC COMPUTING STACK
+  # ============================================================================
+  
+  # Data manipulation and analysis
+  - pandas>=2.0.0         # Advanced data structures and analysis tools
+  - numpy>=1.24.0          # Fundamental package for numerical computing
+  - scipy>=1.10.0          # Scientific computing and statistical analysis
+  
+  # Time series analysis and statistics
+  - statsmodels>=0.14.0    # Statistical modeling and time series analysis
+  - scikit-learn>=1.3.0    # Machine learning utilities and preprocessing
+  
+  # ============================================================================
+  # DEEP LEARNING AND NEURAL NETWORKS
+  # ============================================================================
+  
+  # TensorFlow ecosystem for LSTM models
+  - tensorflow>=2.13.0     # Deep learning framework for LSTM networks
+  - tensorflow-datasets    # Pre-built datasets for training and validation
+  - tensorflow-estimator   # High-level TensorFlow API
+  
+  # Alternative deep learning frameworks (for experimentation)
+  - pytorch>=2.0.0         # Alternative deep learning framework
+  - torchvision            # Computer vision utilities for PyTorch
+  
+  # ============================================================================
+  # DATA VISUALIZATION AND PLOTTING
+  # ============================================================================
+  
+  # Core plotting libraries
+  - matplotlib>=3.7.0      # Comprehensive plotting library
+  - seaborn>=0.12.0        # Statistical data visualization
+  - plotly>=5.15.0         # Interactive visualizations and dashboards
+  
+  # Advanced visualization tools
+  - bokeh>=3.1.0           # Interactive visualization library
+  - altair>=5.0.0          # Declarative statistical visualization
+  
+  # ============================================================================
+  # DATA COLLECTION AND APIs
+  # ============================================================================
+  
+  # HTTP requests and web APIs
+  - requests>=2.31.0       # HTTP library for EIA API calls
+  - urllib3>=2.0.0         # HTTP client library
+  - aiohttp>=3.8.0         # Async HTTP client for concurrent requests
+  
+  # Data format handling
+  - pyyaml>=6.0            # YAML configuration file parsing
+  - toml>=0.10.0           # TOML configuration file support
+  - configparser           # INI configuration file parsing
+  
+  # ============================================================================
+  # DATABASE AND STORAGE
+  # ============================================================================
+  
+  # Database connectivity
+  - sqlalchemy>=2.0.0      # SQL toolkit and Object-Relational Mapping
+  - sqlite>=3.42.0         # Lightweight database for development
+  - psycopg2>=2.9.0        # PostgreSQL adapter for production
+  
+  # Data serialization and storage
+  - h5py>=3.8.0            # HDF5 data storage for large datasets
+  - pyarrow>=12.0.0        # Apache Arrow for columnar data
+  - openpyxl>=3.1.0        # Excel file reading and writing
+  
+  # ============================================================================
+  # JUPYTER AND DEVELOPMENT TOOLS
+  # ============================================================================
+  
+  # Jupyter ecosystem
+  - jupyter>=1.0.0         # Jupyter metapackage
+  - jupyterlab>=4.0.0      # JupyterLab interface
+  - notebook>=7.0.0        # Jupyter Notebook
+  - ipywidgets>=8.0.0      # Interactive widgets for Jupyter
+  
+  # Development and debugging tools
+  - ipython>=8.14.0        # Enhanced Python interactive shell
+  - ipdb>=0.13.0           # IPython debugger
+  - line_profiler>=4.0.0   # Line-by-line profiler
+  - memory_profiler>=0.61  # Memory usage profiler
+  
+  # ============================================================================
+  # TESTING AND QUALITY ASSURANCE
+  # ============================================================================
+  
+  # Testing frameworks
+  - pytest>=7.4.0          # Python testing framework
+  - pytest-cov>=4.1.0      # Coverage plugin for pytest
+  - pytest-mock>=3.11.0    # Mock plugin for pytest
+  
+  # Code quality tools
+  - black>=23.7.0          # Code formatter
+  - flake8>=6.0.0          # Linting tool
+  - mypy>=1.5.0            # Static type checker
+  - pre-commit>=3.3.0      # Git hooks for code quality
+  
+  # ============================================================================
+  # DOCUMENTATION AND REPORTING
+  # ============================================================================
+  
+  # Documentation generation
+  - sphinx>=7.1.0          # Documentation generator
+  - sphinx-rtd-theme>=1.3.0 # Read the Docs theme for Sphinx
+  - nbsphinx>=0.9.0        # Jupyter notebook integration for Sphinx
+  
+  # Report generation
+  - jinja2>=3.1.0          # Template engine for reports
+  - markdown>=3.4.0        # Markdown processing
+  - weasyprint>=59.0       # HTML/CSS to PDF converter
+  
+  # ============================================================================
+  # SYSTEM UTILITIES AND MONITORING
+  # ============================================================================
+  
+  # System monitoring and logging
+  - psutil>=5.9.0          # System and process utilities
+  - tqdm>=4.65.0           # Progress bars for long-running operations
+  - colorlog>=6.7.0        # Colored logging output
+  
+  # Date and time handling
+  - python-dateutil>=2.8.0 # Extensions to datetime module
+  - pytz>=2023.3           # Timezone handling
+  - pendulum>=2.1.0        # Modern date/time handling
+  
+  # ============================================================================
+  # OPTIMIZATION AND NUMERICAL COMPUTING
+  # ============================================================================
+  
+  # Mathematical optimization
+  - cvxpy>=1.3.0           # Convex optimization
+  - pulp>=2.7.0            # Linear programming
+  - ortools>=9.6.0         # Operations research tools (Google OR-Tools)
+  
+  # Advanced numerical computing
+  - numba>=0.57.0          # JIT compiler for numerical functions
+  - sympy>=1.12.0          # Symbolic mathematics
+  - networkx>=3.1.0        # Network analysis (for grid topology)
+  
+  # ============================================================================
+  # GEOSPATIAL AND WEATHER DATA
+  # ============================================================================
+  
+  # Geospatial data handling
+  - geopandas>=0.13.0      # Geographic data analysis
+  - folium>=0.14.0         # Interactive maps
+  - shapely>=2.0.0         # Geometric objects and operations
+  
+  # Meteorological data processing
+  - xarray>=2023.6.0       # N-dimensional labeled arrays (weather data)
+  - netcdf4>=1.6.0         # NetCDF file format support
+  - cftime>=1.6.0          # Time handling for climate data
+  
+  # ============================================================================
+  # FINANCIAL AND ECONOMIC ANALYSIS
+  # ============================================================================
+  
+  # Financial data and analysis
+  - yfinance>=0.2.0        # Yahoo Finance data access
+  - pandas-datareader>=0.10.0 # Remote data access
+  - quandl>=3.7.0          # Economic and financial data
+  
+  # ============================================================================
+  # ADDITIONAL DEVELOPMENT DEPENDENCIES
+  # ============================================================================
+  
+  # Version control integration
+  - gitpython>=3.1.0       # Git repository interaction
+  
+  # Environment and configuration management
+  - python-dotenv>=1.0.0   # Environment variable management
+  - click>=8.1.0           # Command line interface creation
+  
+  # Parallel processing
+  - joblib>=1.3.0          # Lightweight pipelining and parallel computing
+  - dask>=2023.7.0         # Parallel computing with task scheduling
+  
+  # ============================================================================
+  # PIP-ONLY DEPENDENCIES (not available via conda)
+  # ============================================================================
+  
+  - pip>=23.2.0            # Package installer for Python
+  
+  - pip:
+    # Energy-specific APIs and libraries
+    - pyeia>=1.2.0         # Python wrapper for EIA API
+    - openmeteo-requests>=1.1.0  # Open-Meteo weather API client
+    - pvlib>=0.10.0        # Photovoltaic system modeling
+    - windpowerlib>=0.2.0  # Wind power modeling
+    
+    # Advanced machine learning and AI
+    - optuna>=3.2.0        # Hyperparameter optimization
+    - ray>=2.5.0           # Distributed computing framework
+    - mlflow>=2.5.0        # ML lifecycle management
+    - wandb>=0.15.0        # Experiment tracking and visualization
+    
+    # Time series specific libraries
+    - tslearn>=0.6.0       # Time series machine learning
+    - sktime>=0.21.0       # Time series analysis in scikit-learn style
+    - darts>=0.24.0        # Time series forecasting library
+    - prophet>=1.1.0       # Forecasting procedure (Facebook Prophet)
+    
+    # Advanced plotting and visualization
+    - plotnine>=0.12.0     # Grammar of graphics implementation
+    - pygraphviz>=1.11     # Python interface to Graphviz
+    - wordcloud>=1.9.0     # Word cloud generation
+    
+    # Specialized energy system libraries
+    - pandapower>=2.13.0   # Power system analysis
+    - pypsa>=0.25.0        # Power system analysis with Python
+    - pyomo>=6.6.0         # Optimization modeling language
+    
+    # Development and productivity tools
+    - rich>=13.4.0         # Rich text and beautiful formatting
+    - typer>=0.9.0         # CLI framework with type hints
+    - fastapi>=0.100.0     # Modern web framework for APIs
+    - streamlit>=1.25.0    # Web app framework for data science
+    
+    # Data quality and validation
+    - great-expectations>=0.17.0  # Data quality validation
+    - pandera>=0.15.0      # Statistical data validation
+    - cerberus>=1.3.0      # Data validation library
+    
+    # Additional utilities
+    - python-telegram-bot>=20.4  # Telegram bot API (for notifications)
+    - schedule>=1.2.0      # Job scheduling library
+    - cachetools>=5.3.0    # Extensible memoizing collections
+
+# ============================================================================
+# ENVIRONMENT VARIABLES AND CONFIGURATION
+# ============================================================================
+
+variables:
+  # TensorFlow configuration for optimal performance
+  TF_CPP_MIN_LOG_LEVEL: "2"           # Suppress TensorFlow info/warning logs
+  TF_ENABLE_ONEDNN_OPTS: "1"          # Enable oneDNN optimizations
+  
+  # CUDA configuration (if GPU available)
+  CUDA_VISIBLE_DEVICES: "0"           # Use first GPU if available
+  TF_FORCE_GPU_ALLOW_GROWTH: "true"   # Allow GPU memory growth
+  
+  # Parallel processing configuration
+  OMP_NUM_THREADS: "4"                # OpenMP thread count
+  MKL_NUM_THREADS: "4"                # Intel MKL thread count
+  NUMBA_NUM_THREADS: "4"              # Numba thread count
+  
+  # Python configuration
+  PYTHONPATH: "${CONDA_PREFIX}/src"   # Add src to Python path
+  PYTHONHASHSEED: "42"                # Reproducible hashing
+  
+  # EnergyNexus specific configuration
+  ENERGYNEXUS_DATA_DIR: "data"        # Default data directory
+  ENERGYNEXUS_RESULTS_DIR: "results"  # Default results directory
+  ENERGYNEXUS_LOG_LEVEL: "INFO"       # Default logging level
+  
+  # API configuration (set these externally for security)
+  # EIA_API_KEY: "your_eia_api_key_here"
+  # OPENMETEO_API_KEY: "your_openmeteo_api_key_here"
+
+# ============================================================================
+# POST-INSTALLATION SETUP
+# ============================================================================
+
+# After environment creation, run these commands:
+# 1. conda activate energynexus
+# 2. python -m ipykernel install --user --name energynexus --display-name "EnergyNexus"
+# 3. jupyter lab --generate-config
+# 4. pre-commit install  # If using git hooks
+# 5. python -c "import energynexus; energynexus.print_system_info()"
+
+# For development mode installation:
+# pip install -e .
+
+# For testing the environment:
+# pytest tests/ --cov=src/ --cov-report=html

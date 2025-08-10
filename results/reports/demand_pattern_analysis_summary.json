@@ -1,0 +1,100 @@
+{
+  "analysis_date": "2025-07-04T22:08:05.934286",
+  "dataset_info": {
+    "total_hours": 1440,
+    "date_range": {
+      "start": "2024-01-01T00:00:00",
+      "end": "2024-02-29T23:00:00"
+    }
+  },
+  "fundamental_characteristics": {
+    "average_demand": 537.6406275434518,
+    "peak_demand": 936.8314878213305,
+    "load_factor": 0.573892567161437,
+    "coefficient_of_variation": 0.2577766744696593
+  },
+  "temporal_patterns": {
+    "peak_hour": "12",
+    "valley_hour": "2",
+    "peak_valley_ratio": 1.6701671770401916,
+    "weekend_reduction_pct": 26.090318319152423
+  },
+  "forecasting_characteristics": {
+    "horizon_correlations": {
+      "1": 0.8730376178763961,
+      "3": 0.7168483822890703,
+      "6": 0.36743287368315625,
+      "12": 0.014960339618005478,
+      "24": 0.7146527264870641,
+      "48": 0.34624622437686126
+    },
+    "baseline_performance": {
+      "Persistence": {
+        "MAE": 53.77287090065122,
+        "RMSE": 69.7153394779614,
+        "MAPE": 10.82647190300119,
+        "points": 1439
+      },
+      "Daily Seasonal": {
+        "MAE": 85.21631360027635,
+        "RMSE": 104.35254573313476,
+        "MAPE": 17.23965020217112,
+        "points": 1416
+      },
+      "Weekly Seasonal": {
+        "MAE": 51.243107031269396,
+        "RMSE": 67.88715538857174,
+        "MAPE": 10.323855177114037,
+        "points": 1272
+      },
+      "Rolling Mean (24h)": {
+        "MAE": 89.48780397134415,
+        "RMSE": 103.36027082166632,
+        "MAPE": 17.90505989495825,
+        "points": 1417
+      }
+    },
+    "moderate_difficulty_horizon": 6
+  },
+  "weather_sensitivity": {
+    "temperature_correlation": -0.19067843069194546,
+    "heating_sensitivity": -9.497307351595877,
+    "cooling_sensitivity": 11.680683265642442,
+    "optimal_temperature": 26.0
+  },
+  "feature_importance": {
+    "ranking": [
+      [
+        "month",
+        1.0
+      ],
+      [
+        "day_of_week",
+        0.8636877736162341
+      ],
+      [
+        "is_weekend",
+        0.48704629817222095
+      ],
+      [
+        "hour",
+        0.22032935230638237
+      ],
+      [
+        "temperature",
+        0.19067843069194546
+      ]
+    ]
+  },
+  "model_recommendations": {
+    "sequence_length": "24-48 hours",
+    "key_features": [
+      "cyclical_time",
+      "weather_variables",
+      "lag_features",
+      "rolling_statistics"
+    ],
+    "architecture": "Multi-horizon LSTM with attention mechanism",
+    "validation_strategy": "Chronological walk-forward validation"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "analysis_date": "2025-07-04T21:50:24.534948",
+  "renewable_sources_analyzed": [
+    "solar_generation",
+    "wind_generation"
+  ],
+  "solar_metrics": {
+    "capacity_factor": 19.419966928812457,
+    "average_generation": 38.839933857624914,
+    "volatility": 27.26539170427988
+  },
+  "wind_metrics": {
+    "capacity_factor": 56.10694153399096,
+    "average_generation": 67.32832984078915,
+    "volatility": 17.653111684797018
+  },
+  "complementarity_analysis": {
+    "correlation": -0.03332247587665645,
+    "combined_capacity_factor": 33.1775824057544,
+    "variability_reduction": -39.63709957241706
+  },
+  "forecasting_challenges": {
+    "solar_generation": {
+      "volatility": 27.26539170427988,
+      "persistence_1h": 0.8414436806773855,
+      "persistence_24h": 0.9042530919850371,
+      "zero_periods_pct": 26.666666666666668,
+      "extreme_ramps_pct": 7.32159406858202,
+      "forecast_difficulties": {
+        "1h": 0.1585563193226145,
+        "6h": 0.8640676845965194,
+        "24h": 0.09574690801496288
+      }
+    },
+    "wind_generation": {
+      "volatility": 17.653111684797018,
+      "persistence_1h": 0.9047952770901393,
+      "persistence_24h": 0.27167708784005284,
+      "zero_periods_pct": 7.592592592592593,
+      "extreme_ramps_pct": 5.9314179796107505,
+      "forecast_difficulties": {
+        "1h": 0.0952047229098607,
+        "6h": 0.3619441219893913,
+        "24h": 0.7283229121599472
+      }
+    }
+  },
+  "model_recommendations": {
+    "sequence_length": "24-48 hours for solar daily patterns",
+    "architecture": "Separate LSTM branches with attention mechanism",
+    "key_features": [
+      "cyclical_time",
+      "weather_variables",
+      "lag_features"
+    ],
+    "uncertainty_quantification": "Essential for wind, helpful for solar"
+  }
+}

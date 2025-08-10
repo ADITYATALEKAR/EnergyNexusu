@@ -1,0 +1,33 @@
+{
+  "analysis_date": "2025-07-04T21:47:06.621670",
+  "dataset_info": {
+    "shape": [
+      720,
+      8
+    ],
+    "date_range": {
+      "start": "2024-01-01T00:00:00",
+      "end": "2024-01-30T23:00:00"
+    },
+    "duration_days": 29
+  },
+  "data_quality": {
+    "overall_score": 99.65277777777779,
+    "missing_percentage": 0.3472222222222222,
+    "available_energy_variables": [
+      "solar_generation",
+      "wind_generation",
+      "energy_demand"
+    ]
+  },
+  "recommendations": {
+    "preprocessing_needed": "False",
+    "sequence_length_recommended": "24-48 hours",
+    "validation_strategy": "time-based chronological split",
+    "key_features_to_engineer": [
+      "cyclical_time",
+      "lag_features",
+      "rolling_statistics"
+    ]
+  }
+}

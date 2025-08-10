@@ -1,0 +1,219 @@
+{
+  "analysis_date": "2025-07-05T00:02:10.010973",
+  "strongest_correlations": [
+    [
+      "total_renewable",
+      "renewable_penetration",
+      0.9411712767087295
+    ],
+    [
+      "natural_gas_generation",
+      "energy_price",
+      0.9062971094219451
+    ],
+    [
+      "solar_generation",
+      "total_renewable",
+      0.8726737977492702
+    ],
+    [
+      "energy_demand",
+      "natural_gas_generation",
+      0.8422347413677822
+    ],
+    [
+      "solar_generation",
+      "renewable_penetration",
+      0.8286913156550334
+    ],
+    [
+      "energy_price",
+      "renewable_penetration",
+      -0.8051143135828366
+    ],
+    [
+      "energy_demand",
+      "energy_price",
+      0.7744155564334567
+    ],
+    [
+      "natural_gas_generation",
+      "renewable_penetration",
+      -0.7710034907312987
+    ],
+    [
+      "grid_frequency",
+      "energy_price",
+      0.686414572473796
+    ],
+    [
+      "total_renewable",
+      "energy_price",
+      -0.6505277074175466
+    ]
+  ],
+  "temporal_correlations": {
+    "('energy_demand', 'temperature')": {
+      "max_lag": "-8",
+      "max_correlation": 0.5220327170096213,
+      "zero_lag_correlation": -0.24159748873242223
+    },
+    "('solar_generation', 'energy_demand')": {
+      "max_lag": "6",
+      "max_correlation": 0.6967849202491695,
+      "zero_lag_correlation": -0.13630174939732878
+    },
+    "('wind_generation', 'energy_demand')": {
+      "max_lag": "-19",
+      "max_correlation": -0.10993451554059067,
+      "zero_lag_correlation": -0.05312575549703665
+    },
+    "('total_renewable', 'energy_price')": {
+      "max_lag": "0",
+      "max_correlation": -0.6505277074175458,
+      "zero_lag_correlation": -0.6505277074175458
+    },
+    "('energy_demand', 'natural_gas_generation')": {
+      "max_lag": "0",
+      "max_correlation": 0.8422347413677823,
+      "zero_lag_correlation": 0.8422347413677823
+    }
+  },
+  "conditional_correlation_variability": {
+    "('energy_demand', 'temperature')": {
+      "baseline": -0.24159748873242223,
+      "max_correlation": 0.30452705208548586,
+      "min_correlation": -0.3817178660063642
+    },
+    "('energy_demand', 'total_renewable')": {
+      "baseline": -0.14960995419691558,
+      "max_correlation": 0.03830929306843386,
+      "min_correlation": -0.5314678942326454
+    },
+    "('solar_generation', 'wind_generation')": {
+      "baseline": -0.06981526737147928,
+      "max_correlation": 0.02640754314049535,
+      "min_correlation": -0.6331113340228955
+    },
+    "('energy_demand', 'energy_price')": {
+      "baseline": 0.774415556433457,
+      "max_correlation": 0.9121436906909028,
+      "min_correlation": 0.19865086021051584
+    }
+  },
+  "multicollinearity": {
+    "high_correlation_pairs": [
+      [
+        "temperature",
+        "heating_degree_hours",
+        -0.8459472729471152
+      ],
+      [
+        "temperature",
+        "cooling_degree_hours",
+        0.9016258325804538
+      ]
+    ],
+    "threshold_used": 0.8
+  },
+  "ml_feature_rankings": {
+    "energy_demand": [
+      [
+        "day_of_week",
+        0.8166382670294728
+      ],
+      [
+        "is_business_hour",
+        0.5900920287229131
+      ],
+      [
+        "is_weekend",
+        0.3488851523244438
+      ],
+      [
+        "heating_degree_hours",
+        0.3313193909674776
+      ],
+      [
+        "temperature",
+        0.24159748873242223
+      ]
+    ],
+    "solar_generation": [
+      [
+        "hour",
+        0.7599039412680196
+      ],
+      [
+        "temperature",
+        0.6243529820588218
+      ],
+      [
+        "cooling_degree_hours",
+        0.6158213312760049
+      ],
+      [
+        "heating_degree_hours",
+        0.4629613894156804
+      ],
+      [
+        "day_of_week",
+        0.17075078314789188
+      ]
+    ],
+    "wind_generation": [
+      [
+        "day_of_week",
+        0.3156473997080674
+      ],
+      [
+        "hour",
+        0.13777409188726142
+      ],
+      [
+        "is_business_hour",
+        0.041362836895942445
+      ],
+      [
+        "heating_degree_hours",
+        0.02883991164570121
+      ],
+      [
+        "is_weekend",
+        0.018614780848217813
+      ]
+    ],
+    "energy_price": [
+      [
+        "day_of_week",
+        0.8191911201438895
+      ],
+      [
+        "temperature",
+        0.4653852104036966
+      ],
+      [
+        "heating_degree_hours",
+        0.4466814242607296
+      ],
+      [
+        "hour",
+        0.42057732464324726
+      ],
+      [
+        "cooling_degree_hours",
+        0.3766246293660026
+      ]
+    ]
+  },
+  "recommendations": {
+    "sequence_length": "24-48 hours",
+    "key_preprocessing": [
+      "cyclical_encoding",
+      "lag_features",
+      "conditional_normalization"
+    ],
+    "architecture": "Multi-variate LSTM with attention for conditional correlations",
+    "feature_selection": "Correlation-based ranking with multicollinearity filtering"
+  }
+}

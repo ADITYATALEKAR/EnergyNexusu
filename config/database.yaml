@@ -1,0 +1,379 @@
+# EnergyNexus Database Configuration
+# Aditya's MSc Project - QMUL 2024/25
+#
+# This configuration file defines database connections and settings for the EnergyNexus system.
+# I designed this to support multiple database backends for different use cases:
+#
+# 1. SQLite for development and testing (lightweight, no setup required)
+# 2. PostgreSQL for production deployment (robust, scalable)
+# 3. TimescaleDB for time-series data (optimized for energy data)
+# 4. InfluxDB for real-time monitoring (high-performance time-series)
+#
+# DATABASE SELECTION RATIONALE:
+# - SQLite: Perfect for thesis development, testing, and demonstration
+# - PostgreSQL: Industry standard for production energy management systems
+# - TimescaleDB: Specialized for time-series data with excellent performance
+# - InfluxDB: Optimal for real-time data ingestion and monitoring
+#
+# Security Note: Sensitive credentials are stored in environment variables
+# and referenced here using ${VARIABLE_NAME} syntax for production security.
+
+# Development Database Configuration
+# I use SQLite for development because it requires no setup and is perfect for thesis work
+development:
+  type: sqlite
+  database_name: energynexus_development.db
+  file_path: data/databases/development/
+  description: "Development database for thesis research and testing"
+  
+  # Connection settings optimized for development
+  connection:
+    timeout: 30                    # Connection timeout in seconds
+    check_same_thread: false       # Allow multi-threading for data processing
+    isolation_level: "DEFERRED"    # Transaction isolation for data consistency
+  
+  # Performance settings for development workload
+  performance:
+    journal_mode: "WAL"            # Write-Ahead Logging for better concurrency
+    synchronous: "NORMAL"          # Balance between performance and safety
+    cache_size: 10000              # Cache size in pages (about 40MB)
+    temp_store: "MEMORY"           # Store temporary data in memory
+  
+  # Backup configuration for thesis data protection
+  backup:
+    enabled: true
+    frequency: "daily"             # Daily backups for thesis data safety
+    retention_days: 30             # Keep 30 days of backups
+    backup_path: "data/backups/development/"
+
+# Testing Database Configuration  
+# I use a separate database for automated testing to avoid contaminating development data
+testing:
+  type: sqlite
+  database_name: energynexus_testing.db
+  file_path: data/databases/testing/
+  description: "Isolated testing database for unit and integration tests"
+  
+  connection:
+    timeout: 15                    # Shorter timeout for faster test execution
+    check_same_thread: false
+    isolation_level: "IMMEDIATE"   # Stricter isolation for test consistency
+  
+  performance:
+    journal_mode: "MEMORY"         # In-memory journal for faster tests
+    synchronous: "OFF"             # Disable sync for test speed (data loss OK)
+    cache_size: 5000               # Smaller cache for testing
+  
+  # Testing databases are recreated for each test run, so no backup needed
+  backup:
+    enabled: false
+
+# Production Database Configuration
+# I configure PostgreSQL for production deployment with full enterprise features
+production:
+  type: postgresql
+  host: ${POSTGRES_HOST}           # Environment variable for security
+  port: ${POSTGRES_PORT}           # Default: 5432
+  database_name: ${POSTGRES_DB}    # Database name from environment
+  username: ${POSTGRES_USER}       # Username from environment
+  password: ${POSTGRES_PASSWORD}   # Password from environment (never hardcode!)
+  description: "Production PostgreSQL database for operational energy management"
+  
+  # Connection pool settings for high-performance operation
+  connection_pool:
+    min_connections: 5             # Minimum connections in pool
+    max_connections: 20            # Maximum connections in pool
+    connection_timeout: 30         # Timeout for getting connection from pool
+    idle_timeout: 600              # Close idle connections after 10 minutes
+    max_lifetime: 3600             # Recreate connections after 1 hour
+  
+  # SSL configuration for secure production connections
+  ssl:
+    enabled: true                  # Always use SSL in production
+    mode: "require"                # Require SSL connection
+    cert_file: ${SSL_CERT_PATH}    # Path to SSL certificate
+    key_file: ${SSL_KEY_PATH}      # Path to SSL private key
+    ca_file: ${SSL_CA_PATH}        # Path to certificate authority file
+  
+  # Performance optimization for energy data workloads
+  performance:
+    shared_buffers: "256MB"        # Shared buffer cache
+    effective_cache_size: "1GB"    # Available system cache
+    work_mem: "16MB"               # Memory for sort operations
+    maintenance_work_mem: "64MB"   # Memory for maintenance operations
+    checkpoint_completion_target: 0.9  # Spread checkpoints over time
+    wal_buffers: "16MB"            # Write-ahead log buffers
+    random_page_cost: 1.1          # Cost of random page access (SSD optimized)
+  
+  # High-availability and backup configuration
+  backup:
+    enabled: true
+    frequency: "hourly"            # Hourly backups for critical production data
+    retention_days: 90             # Keep 90 days of production backups
+    backup_path: ${BACKUP_PATH}    # Backup storage location
+    compression: true              # Compress backups to save storage
+    encryption: true               # Encrypt backups for security
+    
+  # Monitoring and alerting for production health
+  monitoring:
+    enabled: true
+    log_level: "INFO"              # Log level for production monitoring
+    slow_query_threshold: 1000     # Log queries slower than 1 second
+    connection_monitoring: true    # Monitor connection pool health
+    performance_monitoring: true   # Monitor query performance
+
+# Time-Series Database Configuration (TimescaleDB)
+# I use TimescaleDB for specialized time-series energy data storage and analysis
+timeseries:
+  type: timescaledb
+  host: ${TIMESCALE_HOST}
+  port: ${TIMESCALE_PORT}          # Default: 5432 (TimescaleDB extends PostgreSQL)
+  database_name: ${TIMESCALE_DB}
+  username: ${TIMESCALE_USER}
+  password: ${TIMESCALE_PASSWORD}
+  description: "TimescaleDB for high-performance energy time-series data"
+  
+  # TimescaleDB-specific configuration for energy data optimization
+  timescale_settings:
+    chunk_time_interval: "1 day"   # Partition data by day for optimal performance
+    compression_enabled: true      # Enable compression for older data
+    compression_policy: "7 days"   # Compress data older than 7 days
+    retention_policy: "2 years"    # Automatically delete data older than 2 years
+    
+  # Hypertable configuration for different energy data types
+  hypertables:
+    energy_generation:
+      time_column: "timestamp"     # Primary time column
+      space_column: "location_id"  # Partition by location for parallel processing
+      chunk_time_interval: "1 day"
+      compression_after: "7 days"
+      
+    energy_demand:
+      time_column: "timestamp"
+      space_column: "grid_region"  # Partition by grid region
+      chunk_time_interval: "1 day"
+      compression_after: "7 days"
+      
+    weather_data:
+      time_column: "timestamp"
+      space_column: "weather_station_id"
+      chunk_time_interval: "1 day"
+      compression_after: "30 days"  # Weather data compressed after 30 days
+      
+    forecast_data:
+      time_column: "forecast_timestamp"
+      space_column: "model_id"     # Partition by forecasting model
+      chunk_time_interval: "1 day"
+      compression_after: "30 days"
+  
+  # Performance tuning for time-series workloads
+  performance:
+    parallel_workers: 4            # Number of parallel workers for queries
+    max_background_workers: 8      # Background workers for maintenance
+    continuous_aggregates: true    # Enable continuous aggregates for fast analytics
+    
+  backup:
+    enabled: true
+    frequency: "every_6_hours"     # More frequent backups for time-series data
+    retention_days: 365            # Keep 1 year of time-series backups
+    point_in_time_recovery: true   # Enable point-in-time recovery
+
+# Real-Time Monitoring Database (InfluxDB)
+# I use InfluxDB for real-time data ingestion and monitoring dashboards
+monitoring:
+  type: influxdb
+  host: ${INFLUX_HOST}
+  port: ${INFLUX_PORT}             # Default: 8086
+  database_name: ${INFLUX_DB}
+  username: ${INFLUX_USER}
+  password: ${INFLUX_PASSWORD}
+  organization: ${INFLUX_ORG}      # InfluxDB 2.x organization
+  token: ${INFLUX_TOKEN}           # InfluxDB 2.x authentication token
+  description: "InfluxDB for real-time energy system monitoring and alerting"
+  
+  # InfluxDB-specific configuration for real-time monitoring
+  influx_settings:
+    retention_policy: "30d"        # Keep real-time data for 30 days
+    precision: "ns"                # Nanosecond timestamp precision
+    batch_size: 5000               # Batch size for write operations
+    flush_interval: "10s"          # Flush data every 10 seconds
+    
+  # Measurement configuration for different data streams
+  measurements:
+    real_time_generation:
+      tags: ["source_type", "location", "unit_id"]  # Indexed tags for fast queries
+      fields: ["power_output", "efficiency", "availability"]  # Measured values
+      retention: "7d"              # Keep real-time generation data for 7 days
+      
+    grid_frequency:
+      tags: ["grid_region", "measurement_point"]
+      fields: ["frequency", "voltage", "current"]
+      retention: "30d"             # Grid stability data kept longer
+      
+    forecast_accuracy:
+      tags: ["model_name", "horizon", "energy_type"]
+      fields: ["mae", "rmse", "mape", "bias"]
+      retention: "90d"             # Forecast performance metrics
+      
+    system_alerts:
+      tags: ["alert_type", "severity", "component"]
+      fields: ["alert_value", "threshold", "duration"]
+      retention: "1y"              # Keep alerts for compliance and analysis
+
+# Cache Database Configuration (Redis)
+# I use Redis for high-speed caching and session management
+cache:
+  type: redis
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}              # Default: 6379
+  password: ${REDIS_PASSWORD}
+  database: ${REDIS_DB}            # Redis database number (0-15)
+  description: "Redis cache for high-performance data access and session management"
+  
+  # Redis configuration for energy system caching needs
+  redis_settings:
+    max_memory: "512mb"            # Maximum memory usage
+    max_memory_policy: "allkeys-lru"  # Eviction policy when memory full
+    timeout: 300                   # Default key expiration (5 minutes)
+    
+  # Cache strategies for different data types
+  cache_strategies:
+    forecast_results:
+      ttl: 3600                    # Cache forecasts for 1 hour
+      prefix: "forecast:"          # Key prefix for organization
+      
+    weather_data:
+      ttl: 1800                    # Cache weather data for 30 minutes
+      prefix: "weather:"
+      
+    model_predictions:
+      ttl: 7200                    # Cache ML predictions for 2 hours
+      prefix: "ml_pred:"
+      
+    user_sessions:
+      ttl: 86400                   # User sessions last 24 hours
+      prefix: "session:"
+
+# Database Connection Management
+# I configure connection management for reliable database operations
+connection_management:
+  # Connection retry configuration for robust operation
+  retry_policy:
+    max_retries: 3                 # Maximum connection retry attempts
+    retry_delay: 1                 # Initial delay between retries (seconds)
+    backoff_multiplier: 2          # Exponential backoff multiplier
+    max_retry_delay: 30            # Maximum delay between retries
+    
+  # Health check configuration for connection monitoring
+  health_check:
+    enabled: true
+    interval: 60                   # Health check every 60 seconds
+    timeout: 10                    # Health check timeout
+    failure_threshold: 3           # Consider unhealthy after 3 failures
+    
+  # Connection pooling defaults (can be overridden per database)
+  default_pool_settings:
+    min_size: 2                    # Minimum connections in pool
+    max_size: 10                   # Maximum connections in pool
+    acquire_timeout: 30            # Timeout for acquiring connection
+    idle_timeout: 300              # Close idle connections after 5 minutes
+
+# Data Migration and Schema Management
+# I configure database schema versioning and migration management
+schema_management:
+  # Migration settings for database schema evolution
+  migrations:
+    enabled: true                  # Enable automatic migrations
+    directory: "database/migrations/"  # Migration scripts location
+    table_name: "schema_migrations"    # Table to track applied migrations
+    auto_migrate: false            # Manual migration control for safety
+    
+  # Schema versioning for reproducible database states
+  versioning:
+    current_version: "1.0.0"       # Current schema version
+    version_table: "schema_version" # Table to track schema version
+    backup_before_migration: true  # Always backup before schema changes
+    
+  # Data seeding for development and testing
+  seeding:
+    enabled: true                  # Enable data seeding
+    seed_directory: "database/seeds/"  # Seed data location
+    environments: ["development", "testing"]  # Only seed non-production
+
+# Security Configuration
+# I implement comprehensive database security measures
+security:
+  # Encryption settings for data protection
+  encryption:
+    at_rest: true                  # Encrypt data at rest
+    in_transit: true               # Encrypt data in transit
+    key_rotation_days: 90          # Rotate encryption keys every 90 days
+    
+  # Access control and authentication
+  access_control:
+    require_ssl: true              # Require SSL for all connections
+    min_password_length: 12        # Minimum password length
+    password_complexity: true     # Require complex passwords
+    session_timeout: 3600          # Session timeout in seconds
+    
+  # Audit logging for security compliance
+  audit_logging:
+    enabled: true                  # Enable audit logging
+    log_file: "logs/database_audit.log"  # Audit log location
+    log_level: "INFO"              # Audit log detail level
+    retention_days: 365            # Keep audit logs for 1 year
+
+# Environment-Specific Overrides
+# I allow environment-specific configuration overrides
+environment_overrides:
+  # Development environment optimizations
+  development:
+    performance:
+      debug_mode: true             # Enable debug logging
+      query_logging: true          # Log all database queries
+      
+  # Testing environment specific settings  
+  testing:
+    connection:
+      timeout: 5                   # Faster timeouts for tests
+    performance:
+      query_logging: false         # Disable query logging in tests
+      
+  # Production environment security enhancements
+  production:
+    security:
+      require_ssl: true            # Mandatory SSL in production
+      access_control:
+        session_timeout: 1800      # Shorter sessions in production
+    monitoring:
+      query_monitoring: true       # Enhanced monitoring in production
+      alert_slow_queries: true     # Alert on slow queries
+
+# Logging Configuration
+# I configure comprehensive database logging for debugging and monitoring
+logging:
+  # General logging settings
+  level: "INFO"                    # Default log level
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Database-specific loggers
+  loggers:
+    sqlalchemy:
+      level: "WARNING"             # Reduce SQLAlchemy verbosity
+      file: "logs/database.log"
+      
+    connection_pool:
+      level: "INFO"
+      file: "logs/connection_pool.log"
+      
+    migrations:
+      level: "INFO"
+      file: "logs/migrations.log"
+      
+    performance:
+      level: "DEBUG"
+      file: "logs/db_performance.log"
+
+# This configuration file provides comprehensive database setup for the EnergyNexus system
+# supporting development, testing, and production deployment scenarios with appropriate
+# security, performance, and monitoring configurations for energy system requirements.

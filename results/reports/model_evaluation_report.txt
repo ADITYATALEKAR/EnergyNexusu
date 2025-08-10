@@ -1,0 +1,44 @@
+ENERGYNEXUS MODEL EVALUATION REPORT
+==================================================
+
+Evaluation Date: 2025-07-08T15:17:04.336240
+Models Evaluated: LSTM_Baseline, Advanced_LSTM, Ensemble_LSTM
+
+MODEL RANKING RESULTS
+-------------------------
+1. LSTM_Baseline: 0.682
+2. Ensemble_LSTM: 0.639
+3. Advanced_LSTM: 0.636
+
+RECOMMENDATIONS
+---------------
+Deployment: Deploy LSTM_Baseline with monitoring - good performance
+Improvements needed:
+  • Focus on accuracy improvement through feature engineering
+  • Enhance uncertainty quantification for better risk management
+
+DETAILED PERFORMANCE ANALYSIS
+-----------------------------------
+
+LSTM_Baseline:
+  Accuracy Score: 0.454
+  Robustness Score: 1.000
+  Robustness Class: Highly Robust
+  Generalization Score: 0.902
+  Composite Score: 0.682
+
+Advanced_LSTM:
+  Accuracy Score: 0.445
+  Robustness Score: 1.000
+  Robustness Class: Highly Robust
+  Generalization Score: 0.810
+  Composite Score: 0.636
+
+Ensemble_LSTM:
+  Accuracy Score: 0.451
+  Robustness Score: 1.000
+  Robustness Class: Highly Robust
+  Generalization Score: 0.941
+  Composite Score: 0.639
+
+END OF REPORT

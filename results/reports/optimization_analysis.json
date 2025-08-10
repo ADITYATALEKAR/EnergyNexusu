@@ -1,0 +1,162 @@
+{
+  "report_metadata": {
+    "timestamp": "2025-07-07T19:24:13.855514",
+    "version": "1.0.0",
+    "scope": "Optimization Integration Analysis"
+  },
+  "executive_summary": {
+    "total_scenarios": 3,
+    "successful_executions": 3,
+    "system_reliability": 100.0,
+    "methods_tested": [
+      "stochastic",
+      "deterministic",
+      "robust"
+    ],
+    "key_finding": "Optimization integration framework demonstrates robust performance"
+  },
+  "scenario_analysis": {
+    "robust": {
+      "execution_time": 0.010331,
+      "forecast_quality": {
+        "1h": {
+          "overall_score": 0.992
+        },
+        "6h": {
+          "overall_score": 0.952
+        },
+        "24h": {
+          "overall_score": 0.808
+        }
+      },
+      "optimization_performance": {
+        "1h": {
+          "total_cost": 17033.4028024285,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 0.0
+        },
+        "6h": {
+          "total_cost": 130595.03442971174,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 0.0
+        },
+        "24h": {
+          "total_cost": 16574332.150418876,
+          "renewable_utilization": 0,
+          "max_unserved_demand": 241.5576364164633
+        }
+      },
+      "system_alerts": 1
+    },
+    "stochastic": {
+      "execution_time": 0.043663,
+      "forecast_quality": {
+        "1h": {
+          "overall_score": 0.992
+        },
+        "6h": {
+          "overall_score": 0.952
+        },
+        "24h": {
+          "overall_score": 0.808
+        }
+      },
+      "optimization_performance": {
+        "1h": {
+          "total_cost": 14569.745708428321,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 4.547473508864641e-15
+        },
+        "6h": {
+          "total_cost": 85351.8519063377,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 1.8189894035458565e-14
+        },
+        "24h": {
+          "total_cost": 536130.0508315907,
+          "renewable_utilization": 91.77649683661366,
+          "max_unserved_demand": 25.27249582349934
+        }
+      },
+      "system_alerts": 0
+    },
+    "deterministic": {
+      "execution_time": 0.0,
+      "forecast_quality": {
+        "1h": {
+          "overall_score": 0.992
+        },
+        "6h": {
+          "overall_score": 0.952
+        },
+        "24h": {
+          "overall_score": 0.808
+        }
+      },
+      "optimization_performance": {
+        "1h": {
+          "total_cost": 11534.22792962173,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 0.0
+        },
+        "6h": {
+          "total_cost": 79853.3541900383,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 0.0
+        },
+        "24h": {
+          "total_cost": 409284.77862601436,
+          "renewable_utilization": 100.0,
+          "max_unserved_demand": 5.684341886080802e-14
+        }
+      },
+      "system_alerts": 0
+    }
+  },
+  "performance_metrics": {
+    "total_cost": {
+      "values": {
+        "robust": 17033.4028024285,
+        "stochastic": 14569.745708428321,
+        "deterministic": 11534.22792962173
+      },
+      "best_method": "deterministic",
+      "performance_spread": 5499.1748728067705
+    },
+    "renewable_utilization": {
+      "values": {
+        "robust": 100.0,
+        "stochastic": 100.0,
+        "deterministic": 100.0
+      },
+      "best_method": "robust",
+      "performance_spread": 0.0
+    },
+    "max_unserved_demand": {
+      "values": {
+        "robust": 0.0,
+        "stochastic": 4.547473508864641e-15,
+        "deterministic": 0.0
+      },
+      "best_method": "robust",
+      "performance_spread": 4.547473508864641e-15
+    }
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Deploy robust optimization for critical periods",
+      "Implement forecast quality monitoring",
+      "Establish backup generation protocols"
+    ],
+    "short_term_improvements": [
+      "Enhance forecast accuracy through ensembles",
+      "Integrate demand response programs",
+      "Develop adaptive method selection"
+    ],
+    "long_term_strategies": [
+      "Implement ML for method selection",
+      "Develop multi-area coordination",
+      "Create digital twin integration"
+    ]
+  }
+}

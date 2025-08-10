@@ -1,0 +1,455 @@
+# EnergyNexus Model Parameters Configuration
+# Aditya's MSc Project - Advanced Scheduling Algorithms for Integrated Power Systems
+# 
+# This configuration file contains all hyperparameters and model settings for the complete
+# EnergyNexus system. I have carefully selected these parameters based on my research,
+# literature review, and experimental optimization for energy forecasting applications.
+#
+# Author: Aditya Talekar (ec24018@qmul.ac.uk)
+# Supervisor: Saqib Iqbal
+# QMUL MSc Data Science and AI - 2024/25
+
+# ==============================================================================
+# PROJECT METADATA AND VERSIONING
+# ==============================================================================
+project:
+  name: "EnergyNexus"
+  version: "1.0.0"
+  author: "Aditya Talekar"
+  institution: "Queen Mary University of London"
+  supervisor: "Saqib Iqbal"
+  date_created: "2024-01-01"
+  last_modified: "2025-01-02"
+  description: "Advanced scheduling algorithms for integrated power systems using deep learning forecasting and multi-objective optimization"
+
+# ==============================================================================
+# LSTM FORECASTING MODEL PARAMETERS
+# ==============================================================================
+# I have optimized these parameters specifically for renewable energy forecasting
+# based on my analysis of energy time series characteristics and grid operational requirements
+
+lstm_forecasting:
+  # Network Architecture Parameters
+  # I chose these dimensions based on energy data complexity and computational efficiency
+  architecture:
+    sequence_length: 48              # Hours of historical data (2 days for weekly pattern capture)
+    hidden_size: 128                 # LSTM hidden state dimension (optimal for energy pattern recognition)
+    num_layers: 3                    # LSTM stack depth (captures multi-scale temporal patterns)
+    input_features: 8                # Number of input features (energy + weather + time encoding)
+    dropout_rate: 0.3                # Regularization strength (prevents overfitting on energy data)
+    use_bidirectional: true          # Enable bidirectional processing (better context understanding)
+    use_attention: true              # Enable attention mechanism (focuses on relevant patterns)
+    attention_heads: 8               # Multi-head attention configuration
+
+  # Forecast Configuration
+  # These horizons align with actual grid operational requirements
+  forecasting:
+    horizons: [1, 6, 24]            # Forecast horizons in hours [immediate, dispatch, day-ahead]
+    target_variables:               # What I am forecasting
+      - "solar_generation"
+      - "wind_generation" 
+      - "energy_demand"
+    uncertainty_quantification: true # Enable prediction confidence intervals
+    uncertainty_method: "monte_carlo_dropout"
+
+  # Training Parameters
+  # I optimized these for stable convergence on energy time series data
+  training:
+    learning_rate: 0.001            # Initial learning rate (stable for energy data)
+    batch_size: 32                  # Mini-batch size (balance between stability and efficiency)
+    max_epochs: 100                 # Maximum training iterations
+    early_stopping_patience: 15     # Epochs without improvement before stopping
+    validation_split: 0.2           # Fraction of data for validation
+    scheduler:
+      type: "ReduceLROnPlateau"     # Learning rate reduction strategy
+      factor: 0.5                  # LR reduction factor
+      patience: 5                  # Epochs before LR reduction
+      min_lr: 1e-6                 # Minimum learning rate
+    
+    # Optimization Configuration
+    optimizer:
+      type: "Adam"                  # Adaptive optimizer (good for energy data)
+      weight_decay: 1e-5           # L2 regularization strength
+      betas: [0.9, 0.999]          # Adam momentum parameters
+      eps: 1e-8                    # Numerical stability parameter
+    
+    # Loss Function
+    loss_function:
+      type: "MSELoss"               # Mean Squared Error (penalizes large forecast errors)
+      horizon_weights: [1.0, 0.8, 0.6]  # Weight importance by forecast horizon
+
+  # Data Processing Parameters
+  # These settings handle energy-specific data characteristics
+  data_processing:
+    scaling_method: "MinMaxScaler"  # Normalization approach (preserves energy relationships)
+    feature_engineering:
+      lag_features: [1, 24, 168]   # Lag hours [1h, 1day, 1week] for temporal dependencies
+      rolling_windows: [24, 168]   # Rolling statistics windows [daily, weekly]
+      time_encoding: "circular"    # Circular encoding for time features
+      weather_integration: true    # Include weather features for renewable forecasting
+    
+    # Data Quality Requirements
+    quality_thresholds:
+      min_completeness: 0.8         # Minimum data completeness ratio
+      max_outlier_ratio: 0.05      # Maximum acceptable outlier proportion
+      min_pattern_consistency: 0.7  # Minimum pattern regularity score
+
+# ==============================================================================
+# OPTIMIZATION ALGORITHM PARAMETERS  
+# ==============================================================================
+# These parameters control the energy scheduling optimization process
+# I designed these based on grid operational constraints and economic objectives
+
+energy_optimization:
+  # Multi-Objective Configuration
+  # I balance multiple competing objectives in energy system operation
+  objectives:
+    cost_minimization:
+      weight: 0.4                   # Economic objective weight
+      include_fuel_costs: true
+      include_startup_costs: true
+      include_maintenance_costs: true
+    
+    emission_minimization:
+      weight: 0.3                   # Environmental objective weight
+      co2_penalty: 50               # CO2 emission penalty ($/ton)
+      renewable_incentive: 10       # Renewable energy bonus ($/MWh)
+    
+    reliability_maximization:
+      weight: 0.3                   # Grid stability objective weight
+      reserve_margin: 0.15          # Required spinning reserve (15% of demand)
+      ramp_rate_penalty: 25         # Penalty for rapid generation changes ($/MW/min)
+
+  # Optimization Algorithm Configuration
+  # I selected these algorithms based on energy scheduling literature
+  algorithms:
+    primary_method: "mixed_integer_linear_programming"
+    fallback_method: "genetic_algorithm"
+    
+    # Linear Programming Solver Settings
+    milp_solver:
+      solver_name: "GLPK"           # Open-source solver (academic license compliant)
+      time_limit: 300               # Maximum solution time (5 minutes)
+      mip_gap: 0.01                # Optimality gap tolerance (1%)
+      presolve: true               # Enable problem preprocessing
+      cuts: true                   # Enable cutting planes
+      
+    # Genetic Algorithm Settings (backup method)
+    genetic_algorithm:
+      population_size: 100          # GA population size
+      generations: 200              # Maximum generations
+      crossover_rate: 0.8          # Crossover probability
+      mutation_rate: 0.1           # Mutation probability
+      selection_method: "tournament"
+
+  # Energy System Constraints
+  # These reflect real-world grid operational limits
+  constraints:
+    # Generation Limits
+    generation_limits:
+      solar_max_capacity: 200       # MW (solar farm capacity)
+      wind_max_capacity: 150        # MW (wind farm capacity)
+      gas_max_capacity: 300         # MW (gas plant capacity)
+      coal_max_capacity: 400        # MW (coal plant capacity)
+      battery_capacity: 100         # MWh (energy storage capacity)
+      battery_power_rate: 25        # MW (battery charge/discharge rate)
+    
+    # Operational Constraints
+    operational:
+      min_up_time: 4                # Hours (minimum generation unit online time)
+      min_down_time: 4              # Hours (minimum generation unit offline time)
+      ramp_rate_up: 50              # MW/hour (maximum generation increase rate)
+      ramp_rate_down: 50            # MW/hour (maximum generation decrease rate)
+      spinning_reserve_req: 0.15    # Fraction of demand (grid stability requirement)
+    
+    # Grid Constraints
+    grid_limits:
+      transmission_capacity: 800    # MW (grid transmission limit)
+      voltage_stability_margin: 0.1 # Grid voltage stability requirement
+      frequency_regulation: 0.02    # Grid frequency regulation requirement
+
+  # Economic Parameters
+  # These costs reflect current energy market conditions
+  costs:
+    # Variable Operation Costs ($/MWh)
+    variable_costs:
+      solar_generation: 0           # Solar marginal cost (fuel is free)
+      wind_generation: 5            # Wind O&M cost
+      gas_generation: 45            # Natural gas fuel + O&M cost
+      coal_generation: 35           # Coal fuel + O&M cost
+      battery_discharge: 2          # Battery degradation cost
+    
+    # Fixed Operation Costs ($/hour)
+    fixed_costs:
+      gas_plant_fixed: 50           # Gas plant fixed O&M
+      coal_plant_fixed: 40          # Coal plant fixed O&M
+      grid_maintenance: 25          # Grid maintenance allocation
+    
+    # Startup/Shutdown Costs ($)
+    startup_costs:
+      gas_plant_startup: 500        # Gas turbine startup cost
+      coal_plant_startup: 1000      # Coal plant startup cost
+    
+    # Emission Costs ($/ton CO2)
+    emission_factors:
+      gas_emission_rate: 0.35       # ton CO2/MWh (natural gas)
+      coal_emission_rate: 0.82      # ton CO2/MWh (coal)
+      carbon_price: 50              # $/ton CO2 (carbon pricing)
+
+# ==============================================================================
+# SIMULATION ENVIRONMENT PARAMETERS
+# ==============================================================================
+# These parameters control the digital twin simulation environment
+# I designed this to accurately model real grid operations
+
+simulation:
+  # Temporal Configuration
+  # I chose these settings to balance accuracy with computational efficiency
+  time_settings:
+    simulation_duration: 168        # Hours (1 week simulation)
+    time_step: 1                   # Hour (simulation resolution)
+    forecast_update_frequency: 6   # Hours (how often forecasts are updated)
+    optimization_frequency: 1      # Hours (how often schedules are optimized)
+  
+  # Scenario Configuration
+  # I define multiple scenarios to test system robustness
+  scenarios:
+    base_case:
+      description: "Normal operating conditions"
+      demand_multiplier: 1.0
+      renewable_availability: 1.0
+      equipment_availability: 1.0
+    
+    high_demand:
+      description: "Peak demand stress test"
+      demand_multiplier: 1.3
+      renewable_availability: 1.0
+      equipment_availability: 1.0
+    
+    low_renewable:
+      description: "Limited renewable generation"
+      demand_multiplier: 1.0
+      renewable_availability: 0.3
+      equipment_availability: 1.0
+    
+    equipment_outage:
+      description: "Generator forced outage"
+      demand_multiplier: 1.0
+      renewable_availability: 1.0
+      equipment_availability: 0.8
+
+  # Uncertainty Modeling
+  # I model real-world uncertainties that affect grid operations
+  uncertainty:
+    forecast_errors:
+      solar_forecast_mae: 15        # MW (typical solar forecast error)
+      wind_forecast_mae: 20         # MW (typical wind forecast error)
+      demand_forecast_mae: 25       # MW (typical demand forecast error)
+    
+    equipment_reliability:
+      gas_plant_availability: 0.95  # Fraction (95% availability)
+      coal_plant_availability: 0.90 # Fraction (90% availability)
+      transmission_availability: 0.99 # Fraction (99% availability)
+    
+    # Monte Carlo Simulation Settings
+    monte_carlo:
+      num_scenarios: 1000           # Number of uncertainty scenarios
+      confidence_interval: 0.95    # Statistical confidence level
+      random_seed: 42              # Reproducibility seed
+
+# ==============================================================================
+# PERFORMANCE EVALUATION PARAMETERS
+# ==============================================================================
+# These metrics assess system performance for thesis evaluation
+
+evaluation:
+  # Forecasting Performance Metrics
+  # I selected metrics relevant to energy system operations
+  forecasting_metrics:
+    primary_metrics:
+      - "mean_absolute_error"       # MW (easy to interpret)
+      - "root_mean_square_error"    # MW (penalizes large errors)
+      - "mean_absolute_percentage_error"  # % (relative performance)
+      - "coefficient_of_determination"     # R² (explained variance)
+    
+    secondary_metrics:
+      - "directional_accuracy"      # % (trend prediction accuracy)
+      - "peak_demand_accuracy"      # % (critical period performance)
+      - "forecast_skill_score"      # Improvement over persistence model
+    
+    # Performance Thresholds
+    acceptable_performance:
+      mae_threshold: 20             # MW (acceptable forecast error)
+      r2_threshold: 0.8            # Minimum explained variance
+      directional_accuracy: 0.75   # Minimum trend prediction accuracy
+
+  # Optimization Performance Metrics
+  # These assess the quality of energy scheduling decisions
+  optimization_metrics:
+    economic_metrics:
+      - "total_operating_cost"      # $ (primary economic objective)
+      - "fuel_cost"                # $ (fuel expenditure)
+      - "emission_cost"            # $ (environmental cost)
+      - "reliability_cost"         # $ (grid stability cost)
+    
+    operational_metrics:
+      - "renewable_utilization"     # % (renewable energy usage)
+      - "load_following_capability" # Grid responsiveness
+      - "reserve_margin_adequacy"   # Grid security assessment
+      - "constraint_violation_rate" # % (operational limit breaches)
+    
+    # Performance Targets
+    optimization_targets:
+      cost_reduction: 0.15          # 15% cost reduction target
+      renewable_penetration: 0.6    # 60% renewable energy target
+      emission_reduction: 0.25      # 25% emission reduction target
+
+  # System Integration Metrics
+  # These evaluate the overall system performance
+  integration_metrics:
+    forecast_optimization_coupling:
+      forecast_accuracy_impact: true    # Assess forecast quality impact on optimization
+      uncertainty_propagation: true     # Track uncertainty through the system
+      adaptive_scheduling: true         # Evaluate schedule adaptation capability
+    
+    computational_performance:
+      training_time_limit: 3600     # Seconds (1 hour max training time)
+      optimization_time_limit: 300  # Seconds (5 minutes max optimization time)
+      memory_usage_limit: 8192      # MB (8GB memory limit)
+
+# ==============================================================================
+# DEPLOYMENT AND OPERATIONAL PARAMETERS
+# ==============================================================================
+# These settings control real-world deployment characteristics
+
+deployment:
+  # Model Deployment Configuration
+  model_serving:
+    framework: "PyTorch"            # Deep learning framework
+    precision: "float32"           # Model precision (balance accuracy/speed)
+    batch_inference: true          # Enable batch prediction
+    model_versioning: true         # Track model versions
+    
+  # Real-time Operation Settings
+  operational:
+    update_frequency: 3600          # Seconds (hourly model updates)
+    forecast_horizon: 72            # Hours (3-day operational horizon)
+    alert_thresholds:
+      forecast_error: 30            # MW (trigger forecast quality alert)
+      optimization_failure: true    # Alert on optimization failures
+      constraint_violation: true    # Alert on operational limit breaches
+    
+  # Data Management
+  data_retention:
+    raw_data_retention: 2190        # Days (6 years regulatory requirement)
+    model_results_retention: 1095   # Days (3 years for analysis)
+    log_retention: 365              # Days (1 year for debugging)
+    
+  # Security and Compliance
+  security:
+    api_rate_limiting: true         # Prevent API abuse
+    data_encryption: true           # Encrypt sensitive data
+    audit_logging: true             # Log all system access
+    backup_frequency: 86400         # Seconds (daily backups)
+
+# ==============================================================================
+# RESEARCH AND THESIS DOCUMENTATION
+# ==============================================================================
+# These parameters support my MSc thesis research and documentation
+
+research:
+  # Experimental Design
+  experiments:
+    baseline_methods:               # Comparison methods for thesis evaluation
+      - "persistence_forecast"      # Simple baseline
+      - "arima_forecast"           # Statistical baseline
+      - "linear_optimization"      # Simple optimization baseline
+    
+    ablation_studies:              # Component importance analysis
+      - "without_attention"        # LSTM without attention mechanism
+      - "without_uncertainty"      # Deterministic forecasting
+      - "single_horizon"          # Single vs multi-horizon forecasting
+      - "without_weather"         # Impact of weather features
+    
+    sensitivity_analysis:          # Parameter sensitivity testing
+      sequence_lengths: [24, 48, 72, 96]  # Historical data window sizes
+      hidden_sizes: [64, 128, 256]        # LSTM capacity variations
+      forecast_horizons: [[1], [1,6], [1,6,24], [1,6,24,48]]  # Horizon combinations
+  
+  # Reproducibility Settings
+  reproducibility:
+    random_seeds: [42, 123, 456, 789, 101112]  # Multiple seeds for statistical validity
+    cross_validation_folds: 5       # Time series cross-validation
+    bootstrap_samples: 1000         # Bootstrap confidence intervals
+    
+  # Documentation and Reporting
+  reporting:
+    generate_plots: true            # Create thesis figures automatically
+    save_intermediate_results: true # Store all experimental results
+    performance_benchmarking: true  # Compare against published baselines
+    statistical_significance: true  # Test result significance
+    
+    # Output Formats
+    output_formats:
+      - "csv"                      # Data tables for analysis
+      - "json"                     # Structured results
+      - "png"                      # High-resolution figures
+      - "pdf"                      # Publication-ready plots
+      - "latex"                    # Tables for thesis document
+
+# ==============================================================================
+# CONFIGURATION VALIDATION AND METADATA
+# ==============================================================================
+# This section ensures configuration consistency and provides metadata
+
+validation:
+  # Parameter Validation Rules
+  constraints:
+    lstm_forecasting:
+      sequence_length: {min: 12, max: 168}      # Reasonable historical window
+      hidden_size: {min: 32, max: 512}          # Computational feasibility
+      learning_rate: {min: 1e-5, max: 1e-1}    # Stable training range
+    
+    optimization:
+      time_limit: {min: 60, max: 1800}         # Practical solution time
+      generation_capacity: {min: 0, max: 1000}  # Realistic capacity limits
+    
+    simulation:
+      duration: {min: 24, max: 8760}           # Minimum day to maximum year
+
+  # Configuration Metadata
+  metadata:
+    parameter_count: 150+            # Total number of configurable parameters
+    research_basis: "Literature review and experimental optimization"
+    validation_method: "Grid search and Bayesian optimization"
+    last_tuned: "2024-12-15"
+    performance_validated: true
+    thesis_chapter_reference: "Chapter 4: Methodology"
+
+# ==============================================================================
+# NOTES AND FUTURE EXTENSIONS
+# ==============================================================================
+# Documentation for future development and thesis discussion
+
+notes:
+  parameter_selection_rationale: |
+    All parameters in this configuration have been selected based on:
+    1. Literature review of energy forecasting and optimization research
+    2. Experimental validation on energy datasets
+    3. Grid operational requirements and industry standards
+    4. Computational efficiency and practical deployment constraints
+    5. Academic research best practices for reproducibility
+  
+  future_extensions:
+    - "Transformer-based forecasting models for longer sequences"
+    - "Reinforcement learning for adaptive scheduling policies"
+    - "Distributed optimization for multi-area grid coordination"
+    - "Integration of energy storage degradation models"
+    - "Real-time market price forecasting and bidding strategies"
+  
+  thesis_contributions:
+    - "Multi-horizon LSTM architecture for renewable energy forecasting"
+    - "Uncertainty-aware optimization for grid scheduling under renewables"
+    - "Comprehensive evaluation framework for hybrid energy systems"
+    - "Production-ready implementation with operational deployment guidelines"
+    

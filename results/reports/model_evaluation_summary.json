@@ -1,0 +1,881 @@
+{
+  "evaluation_date": "2025-07-08T15:17:04.336240",
+  "evaluation_scope": "Comprehensive model evaluation framework demonstration",
+  "models_evaluated": [
+    "LSTM_Baseline",
+    "Advanced_LSTM",
+    "Ensemble_LSTM"
+  ],
+  "cv_results": {
+    "LSTM_Baseline": {
+      "model_name": "LSTM_Baseline",
+      "n_folds": 5,
+      "scores": {
+        "mae_scores": [
+          61.94485151872628,
+          63.733996983859775,
+          60.200927089417746,
+          64.464346998373,
+          61.36460557821317
+        ],
+        "rmse_scores": [
+          76.58819817040346,
+          82.53996677541495,
+          78.94362691980133,
+          79.06941053284122,
+          77.10527859423564
+        ],
+        "mape_scores": [
+          12.597233271521782,
+          13.535674248156646,
+          12.525267281751438,
+          13.20798462748435,
+          12.71044872756175
+        ],
+        "r2_scores": [
+          -0.7865404612689373,
+          -0.9938252810453589,
+          -0.9949367422371922,
+          -0.7804105508111732,
+          -0.8080208181069954
+        ],
+        "fold_details": [
+          {
+            "fold": 1,
+            "train_size": 170,
+            "test_size": 166,
+            "mae": 61.94485151872628,
+            "rmse": 76.58819817040346,
+            "mape": 12.597233271521782,
+            "r2": -0.7865404612689373
+          },
+          {
+            "fold": 2,
+            "train_size": 336,
+            "test_size": 166,
+            "mae": 63.733996983859775,
+            "rmse": 82.53996677541495,
+            "mape": 13.535674248156646,
+            "r2": -0.9938252810453589
+          },
+          {
+            "fold": 3,
+            "train_size": 502,
+            "test_size": 166,
+            "mae": 60.200927089417746,
+            "rmse": 78.94362691980133,
+            "mape": 12.525267281751438,
+            "r2": -0.9949367422371922
+          },
+          {
+            "fold": 4,
+            "train_size": 668,
+            "test_size": 166,
+            "mae": 64.464346998373,
+            "rmse": 79.06941053284122,
+            "mape": 13.20798462748435,
+            "r2": -0.7804105508111732
+          },
+          {
+            "fold": 5,
+            "train_size": 834,
+            "test_size": 166,
+            "mae": 61.36460557821317,
+            "rmse": 77.10527859423564,
+            "mape": 12.71044872756175,
+            "r2": -0.8080208181069954
+          }
+        ]
+      },
+      "summary": {
+        "mae_mean": 62.34174563371799,
+        "mae_std": 1.5581548088308665,
+        "rmse_mean": 78.84929619853932,
+        "rmse_std": 2.089620042453437,
+        "mape_mean": 12.915321631295194,
+        "mape_std": 0.39135265566769323,
+        "r2_mean": -0.8727467706939315,
+        "r2_std": 0.09973700320328942
+      },
+      "cv_completed": true
+    },
+    "Advanced_LSTM": {
+      "model_name": "Advanced_LSTM",
+      "n_folds": 5,
+      "scores": {
+        "mae_scores": [
+          60.217831679548134,
+          54.21363967351933,
+          63.3074469673703,
+          60.40505688875391,
+          60.40386420619454
+        ],
+        "rmse_scores": [
+          77.64844761906754,
+          67.16700738175831,
+          78.75311574536686,
+          75.74120280754951,
+          74.42981830159333
+        ],
+        "mape_scores": [
+          11.992763299139236,
+          11.177765791904806,
+          12.906645772822486,
+          12.169376705456934,
+          12.52024534618677
+        ],
+        "r2_scores": [
+          -0.6821766059662113,
+          -0.380414949411473,
+          -0.5004576364644484,
+          -0.5551360521919966,
+          -0.7365920386357734
+        ],
+        "fold_details": [
+          {
+            "fold": 1,
+            "train_size": 170,
+            "test_size": 166,
+            "mae": 60.217831679548134,
+            "rmse": 77.64844761906754,
+            "mape": 11.992763299139236,
+            "r2": -0.6821766059662113
+          },
+          {
+            "fold": 2,
+            "train_size": 336,
+            "test_size": 166,
+            "mae": 54.21363967351933,
+            "rmse": 67.16700738175831,
+            "mape": 11.177765791904806,
+            "r2": -0.380414949411473
+          },
+          {
+            "fold": 3,
+            "train_size": 502,
+            "test_size": 166,
+            "mae": 63.3074469673703,
+            "rmse": 78.75311574536686,
+            "mape": 12.906645772822486,
+            "r2": -0.5004576364644484
+          },
+          {
+            "fold": 4,
+            "train_size": 668,
+            "test_size": 166,
+            "mae": 60.40505688875391,
+            "rmse": 75.74120280754951,
+            "mape": 12.169376705456934,
+            "r2": -0.5551360521919966
+          },
+          {
+            "fold": 5,
+            "train_size": 834,
+            "test_size": 166,
+            "mae": 60.40386420619454,
+            "rmse": 74.42981830159333,
+            "mape": 12.52024534618677,
+            "r2": -0.7365920386357734
+          }
+        ]
+      },
+      "summary": {
+        "mae_mean": 59.70956788307724,
+        "mae_std": 2.979061772368013,
+        "rmse_mean": 74.74791837106713,
+        "rmse_std": 4.074621184340548,
+        "mape_mean": 12.153359383102046,
+        "mape_std": 0.5796337131036116,
+        "r2_mean": -0.5709554565339806,
+        "r2_std": 0.12753940759952134
+      },
+      "cv_completed": true
+    },
+    "Ensemble_LSTM": {
+      "model_name": "Ensemble_LSTM",
+      "n_folds": 5,
+      "scores": {
+        "mae_scores": [
+          55.758154306432615,
+          58.101953018960074,
+          55.71140914171081,
+          55.259841562803906,
+          55.60120893269161
+        ],
+        "rmse_scores": [
+          70.28950669161183,
+          70.24639223541544,
+          69.5761633932601,
+          69.39662762542379,
+          70.37659780566584
+        ],
+        "mape_scores": [
+          11.609253515349884,
+          11.726908572179843,
+          11.68109994021507,
+          11.516917423907442,
+          11.194782424357948
+        ],
+        "r2_scores": [
+          -0.3897237371519475,
+          -0.42647647176781334,
+          -0.48308727339957613,
+          -0.4618421763152789,
+          -0.8027637321154706
+        ],
+        "fold_details": [
+          {
+            "fold": 1,
+            "train_size": 170,
+            "test_size": 166,
+            "mae": 55.758154306432615,
+            "rmse": 70.28950669161183,
+            "mape": 11.609253515349884,
+            "r2": -0.3897237371519475
+          },
+          {
+            "fold": 2,
+            "train_size": 336,
+            "test_size": 166,
+            "mae": 58.101953018960074,
+            "rmse": 70.24639223541544,
+            "mape": 11.726908572179843,
+            "r2": -0.42647647176781334
+          },
+          {
+            "fold": 3,
+            "train_size": 502,
+            "test_size": 166,
+            "mae": 55.71140914171081,
+            "rmse": 69.5761633932601,
+            "mape": 11.68109994021507,
+            "r2": -0.48308727339957613
+          },
+          {
+            "fold": 4,
+            "train_size": 668,
+            "test_size": 166,
+            "mae": 55.259841562803906,
+            "rmse": 69.39662762542379,
+            "mape": 11.516917423907442,
+            "r2": -0.4618421763152789
+          },
+          {
+            "fold": 5,
+            "train_size": 834,
+            "test_size": 166,
+            "mae": 55.60120893269161,
+            "rmse": 70.37659780566584,
+            "mape": 11.194782424357948,
+            "r2": -0.8027637321154706
+          }
+        ]
+      },
+      "summary": {
+        "mae_mean": 56.086513392519805,
+        "mae_std": 1.0226853386053454,
+        "rmse_mean": 69.9770575502754,
+        "rmse_std": 0.4067955449635771,
+        "mape_mean": 11.545792375202037,
+        "mape_std": 0.18930413554392272,
+        "r2_mean": -0.5127786781500173,
+        "r2_std": 0.14843047368316026
+      },
+      "cv_completed": true
+    }
+  },
+  "robustness_results": {
+    "LSTM_Baseline": {
+      "model_name": "LSTM_Baseline",
+      "noise_levels": [
+        0.0,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "performance_degradation": {
+        "0.0": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        },
+        "0.01": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        },
+        "0.05": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        },
+        "0.1": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        },
+        "0.2": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        },
+        "0.5": {
+          "mae": 63.52442091115988,
+          "degradation_percent": 0.0,
+          "baseline_mae": 63.52442091115988
+        }
+      },
+      "robustness_score": 1.0,
+      "average_degradation": 0.0
+    },
+    "Advanced_LSTM": {
+      "model_name": "Advanced_LSTM",
+      "noise_levels": [
+        0.0,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "performance_degradation": {
+        "0.0": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        },
+        "0.01": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        },
+        "0.05": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        },
+        "0.1": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        },
+        "0.2": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        },
+        "0.5": {
+          "mae": 62.96245362364827,
+          "degradation_percent": 0.0,
+          "baseline_mae": 62.96245362364827
+        }
+      },
+      "robustness_score": 1.0,
+      "average_degradation": 0.0
+    },
+    "Ensemble_LSTM": {
+      "model_name": "Ensemble_LSTM",
+      "noise_levels": [
+        0.0,
+        0.01,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "performance_degradation": {
+        "0.0": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        },
+        "0.01": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        },
+        "0.05": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        },
+        "0.1": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        },
+        "0.2": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        },
+        "0.5": {
+          "mae": 57.548287910017144,
+          "degradation_percent": 0.0,
+          "baseline_mae": 57.548287910017144
+        }
+      },
+      "robustness_score": 1.0,
+      "average_degradation": 0.0
+    }
+  },
+  "generalization_results": {
+    "LSTM_Baseline": {
+      "model_name": "LSTM_Baseline",
+      "train_performance": {
+        "mae": 60.900121734326234,
+        "rmse": 75.74985624228987,
+        "r2": -0.6557602917327887
+      },
+      "test_performance": {
+        "mae": 60.61025645851078,
+        "rmse": 77.19009011193398,
+        "r2": -0.8331156109243234
+      },
+      "generalization_gap": {
+        "mae_gap_percent": -0.4759683027892359,
+        "rmse_gap_percent": 1.9013024460897385,
+        "r2_gap_percent": -27.04575458859958
+      },
+      "generalization_score": 0.9019232488750715
+    },
+    "Advanced_LSTM": {
+      "model_name": "Advanced_LSTM",
+      "train_performance": {
+        "mae": 60.91443186429553,
+        "rmse": 76.68199331519378,
+        "r2": -0.5633556502877055
+      },
+      "test_performance": {
+        "mae": 65.13134664844569,
+        "rmse": 77.09516372923217,
+        "r2": -0.842736283498527
+      },
+      "generalization_gap": {
+        "mae_gap_percent": 6.922685897398748,
+        "rmse_gap_percent": 0.5388102162917101,
+        "r2_gap_percent": -49.59223060390748
+      },
+      "generalization_score": 0.8098209109413402
+    },
+    "Ensemble_LSTM": {
+      "model_name": "Ensemble_LSTM",
+      "train_performance": {
+        "mae": 57.096696105860495,
+        "rmse": 71.68776079136573,
+        "r2": -0.4693359427430688
+      },
+      "test_performance": {
+        "mae": 52.32683134388373,
+        "rmse": 66.05294929566129,
+        "r2": -0.4618751176455109
+      },
+      "generalization_gap": {
+        "mae_gap_percent": -8.354011855840422,
+        "rmse_gap_percent": -7.8602141195392345,
+        "r2_gap_percent": 1.5896556001981244
+      },
+      "generalization_score": 0.9406537280814073
+    }
+  },
+  "comprehensive_comparison": {
+    "LSTM_Baseline": {
+      "model_name": "LSTM_Baseline",
+      "accuracy": {
+        "score": 0.4537565278516753,
+        "basic_accuracy": {
+          "MAE": 60.993568996779345,
+          "RMSE": 76.00193773813531,
+          "MAPE": 12.636944113157252,
+          "R2": -0.687506804406949
+        },
+        "energy_specific": {
+          "mean_error": 2.675435494536963,
+          "directional_accuracy": 52.152152152152155,
+          "peak_accuracy": 0.8322179812955731
+        },
+        "details": {
+          "samples_evaluated": 1000,
+          "peak_samples": "100"
+        }
+      },
+      "robustness": {
+        "score": 1.0,
+        "class": "Highly Robust",
+        "details": {
+          "model_name": "LSTM_Baseline",
+          "noise_levels": [
+            0.0,
+            0.01,
+            0.05,
+            0.1,
+            0.2,
+            0.5
+          ],
+          "performance_degradation": {
+            "0.0": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            },
+            "0.01": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            },
+            "0.05": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            },
+            "0.1": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            },
+            "0.2": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            },
+            "0.5": {
+              "mae": 63.52442091115988,
+              "degradation_percent": 0.0,
+              "baseline_mae": 63.52442091115988
+            }
+          },
+          "robustness_score": 1.0,
+          "average_degradation": 0.0
+        }
+      },
+      "generalization": {
+        "score": 0.9019232488750715,
+        "details": {
+          "model_name": "LSTM_Baseline",
+          "train_performance": {
+            "mae": 60.900121734326234,
+            "rmse": 75.74985624228987,
+            "r2": -0.6557602917327887
+          },
+          "test_performance": {
+            "mae": 60.61025645851078,
+            "rmse": 77.19009011193398,
+            "r2": -0.8331156109243234
+          },
+          "generalization_gap": {
+            "mae_gap_percent": -0.4759683027892359,
+            "rmse_gap_percent": 1.9013024460897385,
+            "r2_gap_percent": -27.04575458859958
+          },
+          "generalization_score": 0.9019232488750715
+        }
+      },
+      "computational_efficiency": {
+        "score": 0.8043478260869565,
+        "training_time": 3600,
+        "details": {
+          "training_time_hours": 1.0
+        }
+      },
+      "uncertainty_quantification": {
+        "score": 0.39800820493424804,
+        "available": true,
+        "coverage": 0.195,
+        "sharpness": 0.34242363061132985,
+        "calibration_error": 0.48500000000000004
+      },
+      "composite_score": 0.6821228640178049
+    },
+    "Advanced_LSTM": {
+      "model_name": "Advanced_LSTM",
+      "accuracy": {
+        "score": 0.44468304650539603,
+        "basic_accuracy": {
+          "MAE": 60.20029118318608,
+          "RMSE": 75.12002152050499,
+          "MAPE": 12.302711847124472,
+          "R2": -0.5425237745424343
+        },
+        "energy_specific": {
+          "mean_error": -1.3922502539205739,
+          "directional_accuracy": 46.94694694694695,
+          "peak_accuracy": 0.8152135850160154
+        },
+        "details": {
+          "samples_evaluated": 1000,
+          "peak_samples": "100"
+        }
+      },
+      "robustness": {
+        "score": 1.0,
+        "class": "Highly Robust",
+        "details": {
+          "model_name": "Advanced_LSTM",
+          "noise_levels": [
+            0.0,
+            0.01,
+            0.05,
+            0.1,
+            0.2,
+            0.5
+          ],
+          "performance_degradation": {
+            "0.0": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            },
+            "0.01": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            },
+            "0.05": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            },
+            "0.1": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            },
+            "0.2": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            },
+            "0.5": {
+              "mae": 62.96245362364827,
+              "degradation_percent": 0.0,
+              "baseline_mae": 62.96245362364827
+            }
+          },
+          "robustness_score": 1.0,
+          "average_degradation": 0.0
+        }
+      },
+      "generalization": {
+        "score": 0.8098209109413402,
+        "details": {
+          "model_name": "Advanced_LSTM",
+          "train_performance": {
+            "mae": 60.91443186429553,
+            "rmse": 76.68199331519378,
+            "r2": -0.5633556502877055
+          },
+          "test_performance": {
+            "mae": 65.13134664844569,
+            "rmse": 77.09516372923217,
+            "r2": -0.842736283498527
+          },
+          "generalization_gap": {
+            "mae_gap_percent": 6.922685897398748,
+            "rmse_gap_percent": 0.5388102162917101,
+            "r2_gap_percent": -49.59223060390748
+          },
+          "generalization_score": 0.8098209109413402
+        }
+      },
+      "computational_efficiency": {
+        "score": 0.5695652173913044,
+        "training_time": 7200,
+        "details": {
+          "training_time_hours": 2.0
+        }
+      },
+      "uncertainty_quantification": {
+        "score": 0.39149630842462146,
+        "available": true,
+        "coverage": 0.169,
+        "sharpness": 0.27491426603557534,
+        "calibration_error": 0.511
+      },
+      "composite_score": 0.6359435533720191
+    },
+    "Ensemble_LSTM": {
+      "model_name": "Ensemble_LSTM",
+      "accuracy": {
+        "score": 0.4505057883415404,
+        "basic_accuracy": {
+          "MAE": 57.05460532582057,
+          "RMSE": 71.24958197942193,
+          "MAPE": 11.747927288989285,
+          "R2": -0.4944332770802904
+        },
+        "energy_specific": {
+          "mean_error": -0.01761088620880332,
+          "directional_accuracy": 48.74874874874875,
+          "peak_accuracy": 0.8433946579612575
+        },
+        "details": {
+          "samples_evaluated": 1000,
+          "peak_samples": "100"
+        }
+      },
+      "robustness": {
+        "score": 1.0,
+        "class": "Highly Robust",
+        "details": {
+          "model_name": "Ensemble_LSTM",
+          "noise_levels": [
+            0.0,
+            0.01,
+            0.05,
+            0.1,
+            0.2,
+            0.5
+          ],
+          "performance_degradation": {
+            "0.0": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            },
+            "0.01": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            },
+            "0.05": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            },
+            "0.1": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            },
+            "0.2": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            },
+            "0.5": {
+              "mae": 57.548287910017144,
+              "degradation_percent": 0.0,
+              "baseline_mae": 57.548287910017144
+            }
+          },
+          "robustness_score": 1.0,
+          "average_degradation": 0.0
+        }
+      },
+      "generalization": {
+        "score": 0.9406537280814073,
+        "details": {
+          "model_name": "Ensemble_LSTM",
+          "train_performance": {
+            "mae": 57.096696105860495,
+            "rmse": 71.68776079136573,
+            "r2": -0.4693359427430688
+          },
+          "test_performance": {
+            "mae": 52.32683134388373,
+            "rmse": 66.05294929566129,
+            "r2": -0.4618751176455109
+          },
+          "generalization_gap": {
+            "mae_gap_percent": -8.354011855840422,
+            "rmse_gap_percent": -7.8602141195392345,
+            "r2_gap_percent": 1.5896556001981244
+          },
+          "generalization_score": 0.9406537280814073
+        }
+      },
+      "computational_efficiency": {
+        "score": 0.33478260869565224,
+        "training_time": 10800,
+        "details": {
+          "training_time_hours": 3.0
+        }
+      },
+      "uncertainty_quantification": {
+        "score": 0.3677334840633303,
+        "available": true,
+        "coverage": 0.129,
+        "sharpness": 0.21686877861242826,
+        "calibration_error": 0.551
+      },
+      "composite_score": 0.638584670228796
+    }
+  },
+  "final_ranking": {
+    "overall_ranking": [
+      [
+        "LSTM_Baseline",
+        0.6821228640178049
+      ],
+      [
+        "Ensemble_LSTM",
+        0.638584670228796
+      ],
+      [
+        "Advanced_LSTM",
+        0.6359435533720191
+      ]
+    ],
+    "top_model": [
+      "LSTM_Baseline",
+      0.6821228640178049
+    ],
+    "model_scores": {
+      "LSTM_Baseline": 0.6821228640178049,
+      "Advanced_LSTM": 0.6359435533720191,
+      "Ensemble_LSTM": 0.638584670228796
+    },
+    "detailed_scores": {
+      "LSTM_Baseline": {
+        "accuracy": 0.4537565278516753,
+        "robustness": 1.0,
+        "generalization": 0.9019232488750715,
+        "efficiency": 0.8043478260869565,
+        "uncertainty": 0.39800820493424804
+      },
+      "Advanced_LSTM": {
+        "accuracy": 0.44468304650539603,
+        "robustness": 1.0,
+        "generalization": 0.8098209109413402,
+        "efficiency": 0.5695652173913044,
+        "uncertainty": 0.39149630842462146
+      },
+      "Ensemble_LSTM": {
+        "accuracy": 0.4505057883415404,
+        "robustness": 1.0,
+        "generalization": 0.9406537280814073,
+        "efficiency": 0.33478260869565224,
+        "uncertainty": 0.3677334840633303
+      }
+    },
+    "ranking_criteria": {
+      "accuracy": 0.4,
+      "robustness": 0.2,
+      "generalization": 0.2,
+      "computational_efficiency": 0.1,
+      "uncertainty_quantification": 0.1
+    },
+    "performance_gaps": {
+      "LSTM_Baseline_vs_Ensemble_LSTM": {
+        "absolute_gap": 0.04353819378900892,
+        "percentage_gap": 6.38274951415094,
+        "significant": "True"
+      },
+      "Ensemble_LSTM_vs_Advanced_LSTM": {
+        "absolute_gap": 0.002641116856776815,
+        "percentage_gap": 0.41358914172345224,
+        "significant": "False"
+      }
+    },
+    "recommendations": {
+      "deployment": "Deploy LSTM_Baseline with monitoring - good performance",
+      "improvements": [
+        "Focus on accuracy improvement through feature engineering",
+        "Enhance uncertainty quantification for better risk management"
+      ],
+      "ensemble": "Consider ensemble of LSTM_Baseline and Ensemble_LSTM"
+    }
+  }
+}

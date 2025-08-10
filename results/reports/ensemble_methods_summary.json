@@ -1,0 +1,443 @@
+{
+  "analysis_date": "2025-07-06T18:55:32.811158",
+  "data_source": "Enhanced synthetic data",
+  "data_records": 2718,
+  "target_variables": [
+    "energy_demand",
+    "solar_generation",
+    "wind_generation"
+  ],
+  "forecast_horizons": [
+    1,
+    6,
+    24
+  ],
+  "base_learners_count": 12,
+  "base_learners_categories": {
+    "neural": [
+      "neural_network"
+    ],
+    "tree": [
+      "random_forest",
+      "extra_trees"
+    ],
+    "kernel": [
+      "svr_rbf"
+    ],
+    "instance": [
+      "knn"
+    ],
+    "boosting": [
+      "gradient_boosting",
+      "xgboost",
+      "lightgbm"
+    ],
+    "bayesian": [
+      "bayesian_ridge"
+    ],
+    "linear": [
+      "linear_regression",
+      "ridge_regression",
+      "elastic_net"
+    ]
+  },
+  "ensemble_methods": [
+    "mean_ensemble",
+    "performance_weighted",
+    "median_ensemble",
+    "stacked_ensemble",
+    "bayesian_ensemble"
+  ],
+  "evaluation_results": {
+    "energy_demand": {
+      "1h": {
+        "mean_ensemble": {
+          "MAE": 59.81424399615169,
+          "RMSE": 74.73051439905633,
+          "R2": 0.8590231092799996,
+          "MAPE": 7.278100685664538,
+          "uncertainty_mean": 50.35199038082435
+        },
+        "performance_weighted": {
+          "MAE": 57.98363374860713,
+          "RMSE": 72.5215683018096,
+          "R2": 0.8672341564854502,
+          "MAPE": 7.073859449095073,
+          "uncertainty_mean": 50.35199038082435
+        },
+        "median_ensemble": {
+          "MAE": 58.581800661759175,
+          "RMSE": 73.26752956313076,
+          "R2": 0.8644888343758981,
+          "MAPE": 7.129915965566829,
+          "uncertainty_mean": 50.35199038082435
+        },
+        "stacked_ensemble": {
+          "MAE": 63.08832280542433,
+          "RMSE": 78.7786901735516,
+          "R2": 0.8433358972180857,
+          "MAPE": 7.317550896399684,
+          "uncertainty_mean": 50.35199038082435
+        },
+        "bayesian_ensemble": {
+          "MAE": 59.221714658697266,
+          "RMSE": 73.86715874790553,
+          "R2": 0.8622616825684749,
+          "MAPE": 7.1880987520396165,
+          "uncertainty_mean": 41.58859180794522
+        }
+      },
+      "6h": {
+        "mean_ensemble": {
+          "MAE": 76.00411668676844,
+          "RMSE": 96.47948002137987,
+          "R2": 0.7650682704827664,
+          "MAPE": 9.504811492081599,
+          "uncertainty_mean": 57.49039699545006
+        },
+        "performance_weighted": {
+          "MAE": 74.67723998254729,
+          "RMSE": 94.93933301754122,
+          "R2": 0.7725090521575757,
+          "MAPE": 9.35183941889971,
+          "uncertainty_mean": 57.49039699545006
+        },
+        "median_ensemble": {
+          "MAE": 75.62675977371381,
+          "RMSE": 95.84032009862766,
+          "R2": 0.7681707241338717,
+          "MAPE": 9.499084394567229,
+          "uncertainty_mean": 57.49039699545006
+        },
+        "stacked_ensemble": {
+          "MAE": 78.81966813430877,
+          "RMSE": 99.85874482026925,
+          "R2": 0.7483227422407979,
+          "MAPE": 9.468808933810893,
+          "uncertainty_mean": 57.49039699545006
+        },
+        "bayesian_ensemble": {
+          "MAE": 76.37090248776252,
+          "RMSE": 96.66442150388747,
+          "R2": 0.7641667261199638,
+          "MAPE": 9.657873556938771,
+          "uncertainty_mean": 45.39364569625509
+        }
+      },
+      "24h": {
+        "mean_ensemble": {
+          "MAE": 77.32536933712377,
+          "RMSE": 96.74259148824444,
+          "R2": 0.7650852139608357,
+          "MAPE": 9.484470675859495,
+          "uncertainty_mean": 55.06263721742172
+        },
+        "performance_weighted": {
+          "MAE": 76.00941605762095,
+          "RMSE": 95.02082812749897,
+          "R2": 0.7733725346875433,
+          "MAPE": 9.338716782952,
+          "uncertainty_mean": 55.06263721742172
+        },
+        "median_ensemble": {
+          "MAE": 76.31811663971537,
+          "RMSE": 95.2610936724416,
+          "R2": 0.772225004962614,
+          "MAPE": 9.402928257824477,
+          "uncertainty_mean": 55.06263721742172
+        },
+        "stacked_ensemble": {
+          "MAE": 78.33271516588987,
+          "RMSE": 98.11319203414179,
+          "R2": 0.7583817524453489,
+          "MAPE": 9.303523087728506,
+          "uncertainty_mean": 55.06263721742172
+        },
+        "bayesian_ensemble": {
+          "MAE": 74.94057319110333,
+          "RMSE": 93.9461800295873,
+          "R2": 0.7784696819471825,
+          "MAPE": 9.218601360560355,
+          "uncertainty_mean": 42.729661248996386
+        }
+      }
+    },
+    "solar_generation": {
+      "1h": {
+        "mean_ensemble": {
+          "MAE": 21.703219935258154,
+          "RMSE": 30.41111361144017,
+          "R2": 0.9388747916092012,
+          "MAPE": 35172246050.00647,
+          "uncertainty_mean": 25.032743034345316
+        },
+        "performance_weighted": {
+          "MAE": 20.11227634002627,
+          "RMSE": 28.991605129635825,
+          "R2": 0.9444479324635059,
+          "MAPE": 28071125485.959805,
+          "uncertainty_mean": 25.032743034345316
+        },
+        "median_ensemble": {
+          "MAE": 20.26611986417169,
+          "RMSE": 29.691245966964463,
+          "R2": 0.9417343560100739,
+          "MAPE": 28103261479.652386,
+          "uncertainty_mean": 25.032743034345316
+        },
+        "stacked_ensemble": {
+          "MAE": 23.803599021844036,
+          "RMSE": 31.62053152204324,
+          "R2": 0.9339163477490251,
+          "MAPE": 47508744527.75574,
+          "uncertainty_mean": 25.032743034345316
+        },
+        "bayesian_ensemble": {
+          "MAE": 19.215782019447992,
+          "RMSE": 28.481730776678496,
+          "R2": 0.9463847347006321,
+          "MAPE": 24719695637.545425,
+          "uncertainty_mean": 14.63179431069257
+        }
+      },
+      "6h": {
+        "mean_ensemble": {
+          "MAE": 22.633544112447005,
+          "RMSE": 30.78386686883238,
+          "R2": 0.9374213895309442,
+          "MAPE": 44847739760.30929,
+          "uncertainty_mean": 27.648574526183687
+        },
+        "performance_weighted": {
+          "MAE": 20.662925133186402,
+          "RMSE": 28.909436888967054,
+          "R2": 0.944810197997616,
+          "MAPE": 37088817403.76145,
+          "uncertainty_mean": 27.648574526183687
+        },
+        "median_ensemble": {
+          "MAE": 20.85458159624833,
+          "RMSE": 29.4161187207287,
+          "R2": 0.9428586744867402,
+          "MAPE": 38549156592.09405,
+          "uncertainty_mean": 27.648574526183687
+        },
+        "stacked_ensemble": {
+          "MAE": 24.753909219241667,
+          "RMSE": 33.99283820758651,
+          "R2": 0.9236947489291555,
+          "MAPE": 42627146075.50212,
+          "uncertainty_mean": 27.648574526183687
+        },
+        "bayesian_ensemble": {
+          "MAE": 19.42317921278077,
+          "RMSE": 28.103118987452277,
+          "R2": 0.9478458807565588,
+          "MAPE": 30299820652.682526,
+          "uncertainty_mean": 13.19405626808168
+        }
+      },
+      "24h": {
+        "mean_ensemble": {
+          "MAE": 20.00262605725991,
+          "RMSE": 30.089830610069306,
+          "R2": 0.9403583771138375,
+          "MAPE": 20564507320.32004,
+          "uncertainty_mean": 21.77855999563064
+        },
+        "performance_weighted": {
+          "MAE": 18.60049260290835,
+          "RMSE": 28.52818991550163,
+          "R2": 0.9463884454369734,
+          "MAPE": 16017516080.832735,
+          "uncertainty_mean": 21.77855999563064
+        },
+        "median_ensemble": {
+          "MAE": 18.387644106862403,
+          "RMSE": 28.476212821199855,
+          "R2": 0.9465836232123249,
+          "MAPE": 16543952254.94398,
+          "uncertainty_mean": 21.77855999563064
+        },
+        "stacked_ensemble": {
+          "MAE": 22.723078291046242,
+          "RMSE": 30.492221073413788,
+          "R2": 0.9387525395116498,
+          "MAPE": 44975855079.38848,
+          "uncertainty_mean": 21.77855999563064
+        },
+        "bayesian_ensemble": {
+          "MAE": 18.63516192155811,
+          "RMSE": 28.64395469208079,
+          "R2": 0.9459524610991996,
+          "MAPE": 14620536558.519703,
+          "uncertainty_mean": 14.104671858738577
+        }
+      }
+    },
+    "wind_generation": {
+      "1h": {
+        "mean_ensemble": {
+          "MAE": 40.034722833408495,
+          "RMSE": 46.85534779268802,
+          "R2": 0.4146205492140732,
+          "MAPE": 2599370812.8314962,
+          "uncertainty_mean": 22.66213549478502
+        },
+        "performance_weighted": {
+          "MAE": 38.329344352857525,
+          "RMSE": 45.49922728717218,
+          "R2": 0.4480151178883892,
+          "MAPE": 2179778456.2811446,
+          "uncertainty_mean": 22.66213549478502
+        },
+        "median_ensemble": {
+          "MAE": 36.67084521769301,
+          "RMSE": 44.31076538420874,
+          "R2": 0.4764747359065046,
+          "MAPE": 1776402734.7382798,
+          "uncertainty_mean": 22.66213549478502
+        },
+        "stacked_ensemble": {
+          "MAE": 52.30311264990088,
+          "RMSE": 60.959777266296165,
+          "R2": 0.00915463043860465,
+          "MAPE": 3342930654.0442085,
+          "uncertainty_mean": 22.66213549478502
+        },
+        "bayesian_ensemble": {
+          "MAE": 37.608826293561854,
+          "RMSE": 45.013530093180755,
+          "R2": 0.459736923932494,
+          "MAPE": 1969151768.408694,
+          "uncertainty_mean": 17.158479091754685
+        }
+      },
+      "6h": {
+        "mean_ensemble": {
+          "MAE": 59.306680326049275,
+          "RMSE": 68.13121091001962,
+          "R2": -0.24114180109199013,
+          "MAPE": 6291429344.339561,
+          "uncertainty_mean": 25.04514117930804
+        },
+        "performance_weighted": {
+          "MAE": 58.39766811174507,
+          "RMSE": 67.12385001097599,
+          "R2": -0.20471107719130877,
+          "MAPE": 6103685217.031392,
+          "uncertainty_mean": 25.04514117930804
+        },
+        "median_ensemble": {
+          "MAE": 58.104097945367144,
+          "RMSE": 66.88926430020372,
+          "R2": -0.1963052967615142,
+          "MAPE": 5752224267.726269,
+          "uncertainty_mean": 25.04514117930804
+        },
+        "stacked_ensemble": {
+          "MAE": 67.33711687425944,
+          "RMSE": 75.89096299862683,
+          "R2": -0.5399595539936628,
+          "MAPE": 6413046178.236885,
+          "uncertainty_mean": 25.04514117930804
+        },
+        "bayesian_ensemble": {
+          "MAE": 58.20849656258808,
+          "RMSE": 66.88907464075902,
+          "R2": -0.19629851270494036,
+          "MAPE": 6085499644.588757,
+          "uncertainty_mean": 24.841042419298795
+        }
+      },
+      "24h": {
+        "mean_ensemble": {
+          "MAE": 73.88869829042056,
+          "RMSE": 83.76957919764877,
+          "R2": -0.868076808926795,
+          "MAPE": 8630419514.725359,
+          "uncertainty_mean": 28.524540802553428
+        },
+        "performance_weighted": {
+          "MAE": 71.73454339168997,
+          "RMSE": 81.39264352452057,
+          "R2": -0.76356864717514,
+          "MAPE": 8538922101.575358,
+          "uncertainty_mean": 28.524540802553428
+        },
+        "median_ensemble": {
+          "MAE": 73.02915269416151,
+          "RMSE": 83.17097751808879,
+          "R2": -0.8414743458065277,
+          "MAPE": 9311802209.971294,
+          "uncertainty_mean": 28.524540802553428
+        },
+        "stacked_ensemble": {
+          "MAE": 80.42046499690272,
+          "RMSE": 90.70609610019282,
+          "R2": -1.1902566760566797,
+          "MAPE": 10494269779.57626,
+          "uncertainty_mean": 28.524540802553428
+        },
+        "bayesian_ensemble": {
+          "MAE": 62.59591857468833,
+          "RMSE": 71.90613561869742,
+          "R2": -0.3764294630701184,
+          "MAPE": 7553348194.854959,
+          "uncertainty_mean": 18.724517633519355
+        }
+      }
+    }
+  },
+  "deployment_recommendations": {
+    "performance_ranking": [
+      [
+        "bayesian_ensemble",
+        47.357839435798695
+      ],
+      [
+        "performance_weighted",
+        48.50083774679877
+      ],
+      [
+        "median_ensemble",
+        48.648790944410266
+      ],
+      [
+        "mean_ensemble",
+        50.07924684165415
+      ],
+      [
+        "stacked_ensemble",
+        54.62022079542422
+      ]
+    ],
+    "best_method": "bayesian_ensemble",
+    "deployment_tiers": {
+      "primary": "bayesian_ensemble",
+      "backup": "performance_weighted",
+      "fallback": "mean_ensemble"
+    },
+    "method_characteristics": {
+      "most_accurate": "bayesian_ensemble",
+      "most_robust": "median_ensemble",
+      "best_uncertainty": "bayesian_ensemble",
+      "fastest": "mean_ensemble",
+      "most_sophisticated": "stacked_ensemble"
+    }
+  },
+  "key_findings": [
+    "Successfully implemented 5 ensemble methods",
+    "Best ensemble method: bayesian_ensemble (avg MAE: 47.36)",
+    "Uncertainty quantification successfully implemented",
+    "Ensemble methods show improved robustness over individual models",
+    "Multi-method approach provides fallback options for operational reliability"
+  ],
+  "next_steps": [
+    "Implement real-time ensemble prediction pipeline",
+    "Develop online ensemble adaptation mechanisms",
+    "Integrate ensemble uncertainty into optimization algorithms",
+    "Create ensemble monitoring and alerting systems",
+    "Extend to multi-site and multi-region forecasting"
+  ]
+}

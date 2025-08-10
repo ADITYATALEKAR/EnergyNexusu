@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+data/raw/
+config/api_keys.yaml
+.env
+logs/
+temp/
+.DS_Store
+.vscode/
+data/external/
