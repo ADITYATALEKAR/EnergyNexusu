@@ -84,7 +84,8 @@ The research demonstrates successful architectural transfer learning between dom
 - **Market Dynamics**: Comprehensive price formation modeling
 
 ## 📈 Results
-<img width="1487" height="985" alt="9d4920fd-c5e2-4ea9-a125-460173512319" src="https://github.com/user-attachments/assets/78e0899f-3b43-4ecf-9e2b-bd90a2dfce19" />
+<img width="500" height="700" alt="9d4920fd-c5e2-4ea9-a125-460173512319" src="https://github.com/user-attachments/assets/78e0899f-3b43-4ecf-9e2b-bd90a2dfce19" />
+<img width="500" height="700" alt="d7dce7fd-690a-4498-9078-4a4e36b1a855" src="https://github.com/user-attachments/assets/166c0ada-b091-45df-92a1-2b059ce2e2bc" />
 
 | Model | Domain | R² Score | MAE | MAPE |
 |-------|--------|----------|-----|------|
@@ -96,6 +97,7 @@ The research demonstrates successful architectural transfer learning between dom
 - **1-hour**: 95.7% R² (demand), 69.7% R² (price)
 - **6-hour**: 96.8% R² (demand), 69.8% R² (price) 
 - **24-hour**: 95.1% R² (demand), 71.3% R² (price)
+<img width="500" height="700" alt="7e9d74b3-c802-40c6-a245-40c7245ada15" src="https://github.com/user-attachments/assets/3ad9172e-4d06-4025-9c5d-dafbf0d538ea" />
 
 ## 🛠️ Installation
 
