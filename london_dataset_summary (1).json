@@ -1,0 +1,25 @@
+{
+  "creation_timestamp": "2025-08-13T11:46:48.787110",
+  "processing_time_minutes": 1.8942007104555765,
+  "dataset_info": {
+    "total_samples": 1051500,
+    "total_features": 125,
+    "time_span": "10 years (2014-2023)",
+    "temporal_resolution": "hourly",
+    "geographic_coverage": "12 London boroughs",
+    "file_size_mb": 2024.6682472229004
+  },
+  "model_compatibility": {
+    "target_model_parameters": 1170000,
+    "samples_per_parameter": 0.8987179487179487,
+    "training_ready": true,
+    "expected_accuracy": "94-96% R-squared"
+  },
+  "next_steps": [
+    "Load dataset for model training",
+    "Create sequences for LSTM input",
+    "Split into train/validation/test sets",
+    "Apply feature scaling",
+    "Train 1.17M parameter model"
+  ]
+}
