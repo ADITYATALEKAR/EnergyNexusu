@@ -1,4 +1,4 @@
-# EnergyNexus: Smart Energy System Optimizer
+# EnergyNexus: LSTM-Based Energy Demand, Energy Price, and Wind Energy Generation Prediction
 
 ## What This Project Does
 This project creates smart algorithms that help power companies decide when to use solar panels, wind turbines, or regular power plants to give people electricity in the most efficient way.
